@@ -93,7 +93,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => VanguardLTE\User::class,
+            'model' => Aireset\User::class,
         ],
 
         // 'users' => [

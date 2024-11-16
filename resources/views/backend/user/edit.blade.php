@@ -166,6 +166,6 @@
     {!! HTML::script('/back/js/as/app.js') !!}
     {!! HTML::script('/back/js/as/btn.js') !!}
     {!! HTML::script('/back/js/as/profile.js') !!}
-    {!! JsValidator::formRequest('VanguardLTE\Http\Requests\User\UpdateDetailsRequest', '#details-form') !!}
-    {!! JsValidator::formRequest('VanguardLTE\Http\Requests\User\UpdateLoginDetailsRequest', '#login-details-form') !!}
+    {!! JsValidator::formRequest('Aireset\Http\Requests\User\UpdateDetailsRequest', '#details-form') !!}
+    {!! JsValidator::formRequest('Aireset\Http\Requests\User\UpdateLoginDetailsRequest', '#login-details-form') !!}
 @stop

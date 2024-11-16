@@ -8,7 +8,7 @@
     <div class="login-logo">
       <a href="{{ route('frontend.auth.login') }}"><span class="logo-lg"><b>WIN-365</b> <small></small></span></a>
     </div>
-	
+
 	<div>
 <font size="4"><a href="https://t.me/betito247"></a></font>
 </div>
@@ -56,5 +56,5 @@
 @stop
 
 @section('scripts')
-  {!! JsValidator::formRequest('VanguardLTE\Http\Requests\Auth\LoginRequest', '#login-form') !!}
+  {!! JsValidator::formRequest('Aireset\Http\Requests\Auth\LoginRequest', '#login-form') !!}
 @stop

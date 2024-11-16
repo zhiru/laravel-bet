@@ -5,6 +5,7 @@ public/modules
 public/mix-manifest.json
 public/mix.js.map
 /storage/*.key
+/bootstrap/cache/*
 /storage/framework/views/*
 /storage/framework/cache/*
 /storage/framework/testing/*

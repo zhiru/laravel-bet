@@ -16,7 +16,7 @@ return [
     |
     */
 
-    'name' => 'GOLDSVET / mrs',
+    'name' => 'Aireset Bet',
 
     /*
     |--------------------------------------------------------------------------
@@ -180,7 +180,7 @@ return [
         Proengsoft\JsValidation\JsValidationServiceProvider::class,
         Anhskohbo\NoCaptcha\NoCaptchaServiceProvider::class,
         //Laravel\Socialite\SocialiteServiceProvider::class,
-        VanguardLTE\Providers\HtmlServiceProvider::class,
+        Aireset\Providers\HtmlServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         anlutro\LaravelSettings\ServiceProvider::class,
         Jenssegers\Agent\AgentServiceProvider::class,
@@ -188,15 +188,15 @@ return [
         /*
          * Application Service Providers...
          */
-        VanguardLTE\Services\Auth\Api\JWTServiceProvider::class,
-        VanguardLTE\Providers\AppServiceProvider::class,
-        VanguardLTE\Providers\AuthServiceProvider::class,
+        Aireset\Services\Auth\Api\JWTServiceProvider::class,
+        Aireset\Providers\AppServiceProvider::class,
+        Aireset\Providers\AuthServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
-        VanguardLTE\Providers\EventServiceProvider::class,
-        VanguardLTE\Providers\RouteServiceProvider::class,
-		
+        Aireset\Providers\EventServiceProvider::class,
+        Aireset\Providers\RouteServiceProvider::class,
+
 		jeremykenedy\LaravelRoles\RolesServiceProvider::class,
-		
+
         Yajra\DataTables\DataTablesServiceProvider::class,
 
     ],

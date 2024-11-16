@@ -18,18 +18,18 @@
 					@endforeach
 				@endif
 				</div>
-				<div class="navBurger" role="navigation" id="navToggle"></div> 
+				<div class="navBurger" role="navigation" id="navToggle"></div>
 				<!-- MENU END -->
 			</div>
 						@php
-							$return = \VanguardLTE\Returns::where('shop_id', Auth::user()->shop_id)->first();
-                            $pincodes = \VanguardLTE\Pincode::where(['shop_id' => Auth::user()->shop_id, 'status' => 1, 'activated_at' => null])->count();
-							$happyhour = \VanguardLTE\HappyHour::where(['shop_id' => auth()->user()->shop_id, 'time' => date('G'), 'status' => 1])->first();
+							$return = \Aireset\Returns::where('shop_id', Auth::user()->shop_id)->first();
+                            $pincodes = \Aireset\Pincode::where(['shop_id' => Auth::user()->shop_id, 'status' => 1, 'activated_at' => null])->count();
+							$happyhour = \Aireset\HappyHour::where(['shop_id' => auth()->user()->shop_id, 'time' => date('G'), 'status' => 1])->first();
 							if(!$happyhour){
-								$happyhour = \VanguardLTE\HappyHour::where(['shop_id' => auth()->user()->shop_id, 'status' => 1])->where('time', '>',date('G'))->first();
+								$happyhour = \Aireset\HappyHour::where(['shop_id' => auth()->user()->shop_id, 'status' => 1])->where('time', '>',date('G'))->first();
 							}
 							if(!$happyhour){
-								$happyhour = \VanguardLTE\HappyHour::where(['shop_id' => auth()->user()->shop_id, 'status' => 1])->first();
+								$happyhour = \Aireset\HappyHour::where(['shop_id' => auth()->user()->shop_id, 'status' => 1])->first();
 							}
 						@endphp
 			<!-- SLIDER - BEGIN -->
@@ -48,7 +48,7 @@
 											<span class="jackpot__value jackpot0">
 								            @if( count($jpgs) > 0 )
 									            {{ $jpgs[0]->balance }}
-								            @endif											
+								            @endif
 											</span>
 										</div>
 										<div class="jackpot__item jackpot__item-maxi">
@@ -58,7 +58,7 @@
 											<span class="jackpot__value jackpot1">
 								            @if( count($jpgs) > 1 )
 									            {{ $jpgs[1]->balance }}
-								            @endif											
+								            @endif
 											</span>
 										</div>
 										<div class="jackpot__item jackpot__item-minor">
@@ -68,7 +68,7 @@
 											<span class="jackpot__value jackpot2">
 								            @if( count($jpgs) > 2 )
 									            {{ $jpgs[2]->balance }}
-								            @endif											
+								            @endif
 											</span>
 										</div>
 										<div class="jackpot__item jackpot__item-mini">
@@ -78,7 +78,7 @@
 											<span class="jackpot__value jackpot3">
 								            @if( count($jpgs) > 3 )
 									            {{ $jpgs[3]->balance }}
-								            @endif											
+								            @endif
 											</span>
 										</div>
 										<div class="jackpot__item jackpot__item-full">
@@ -88,7 +88,7 @@
 											<span class="jackpot__value jackpot4">
 								            @if( count($jpgs) > 4 )
 									            {{ $jpgs[4]->balance }}
-								            @endif											
+								            @endif
 											</span>
 										</div>
 										<div class="jackpot__item jackpot__item-mega">
@@ -98,7 +98,7 @@
 											<span class="jackpot__value jackpot5">
 								            @if( count($jpgs) > 5 )
 									            {{ $jpgs[5]->balance }}
-								            @endif											
+								            @endif
 											</span>
 										</div>
 									</div>
@@ -113,13 +113,13 @@
 							<div class="grid__content games">
 								<div class="games__item">
 									<div class="games__content">
-										<img src="{{ $game->name ? '/frontend/Default/ico/' . $game->name . '.jpg' : '' }}" alt="{{ $game->title }}">										
+										<img src="{{ $game->name ? '/frontend/Default/ico/' . $game->name . '.jpg' : '' }}" alt="{{ $game->title }}">
 										<a href="{{ route('frontend.game.go', $game->name) }}" class="play-btn btn">Play</a>
 										<span class="game-name">{{ $game->title }}</span>
 									</div>
 								</div>
 							</div>
-						</div>					
+						</div>
 					@endforeach
 				@endif
 						<!-- GAMES - BEGIN -->

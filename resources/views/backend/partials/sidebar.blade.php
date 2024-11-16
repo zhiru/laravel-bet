@@ -12,7 +12,7 @@
 
                     @if( Auth::user()->hasRole(['cashier', 'manager']) )
                         @php
-                            $shop = \VanguardLTE\Shop::find( auth()->user()->present()->shop_id );
+                            $shop = \Aireset\Shop::find( auth()->user()->present()->shop_id );
                             echo $shop?number_format($shop->balance,2,".",""):0;
                         @endphp
                     @if( auth()->user()->present()->shop )
@@ -77,7 +77,7 @@
             <li class="{{ Request::is('backend/tree*') ? 'active' : ''  }}">
                 <a href="{{ route('backend.user.tree') }}">
                     <i class="fa fa-users"></i>
-                    <span>{{ \VanguardLTE\Role::where('id', auth()->user()->role_id - 1)->first()->name }} @lang('app.tree')</span>
+                    <span>{{ \Aireset\Role::where('id', auth()->user()->role_id - 1)->first()->name }} @lang('app.tree')</span>
                 </a>
             </li>
             @endpermission

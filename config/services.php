@@ -26,7 +26,7 @@ return [
     ],
 
     'stripe' => [
-        'model'  => VanguardLTE\User::class,
+        'model'  => Aireset\User::class,
         'key'    => env('STRIPE_KEY'),
         'secret' => env('STRIPE_SECRET'),
     ],
@@ -47,18 +47,18 @@ return [
         'client_secret' => env('TWITTER_CLIENT_SECRET'),
         'redirect' => env('TWITTER_CALLBACK_URI'),
     ],
-	
+
 	'vkontakte' => [
         'client_id' => env('VKONTAKTE_CLIENT_ID'),
         'client_secret' => env('VKONTAKTE_CLIENT_SECRET'),
         'redirect' => env('VKONTAKTE_CALLBACK_URI'),
     ],
-	
+
 	'odnoklassniki' => [
 		'client_id' => env('ODNOKLASSNIKI_CLIENT_ID'),
 		'client_secret' => env('ODNOKLASSNIKI_SECRET'),
 		'client_public' => env('ODNOKLASSNIKI_PUBLIC'),
-		'redirect' => env('ODNOKLASSNIKI_CALLBACK_URI'),  
+		'redirect' => env('ODNOKLASSNIKI_CALLBACK_URI'),
 	],
 
     'google' => [

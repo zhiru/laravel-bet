@@ -91,7 +91,7 @@
 @stop
 
 @section('scripts')
-    {!! JsValidator::formRequest('VanguardLTE\Http\Requests\User\CreateUserRequest', '#user-form') !!}
+    {!! JsValidator::formRequest('Aireset\Http\Requests\User\CreateUserRequest', '#user-form') !!}
 
     <script>
 

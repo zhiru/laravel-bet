@@ -20,7 +20,7 @@
 
 
 
-		
+
             <div class="col-md-12">
                 <div class="form-group">
                     <label for="category">@lang('app.categories')</label>
@@ -60,7 +60,7 @@
         <div class="form-group">
             <label>@lang('app.denomination')</label>
             @php
-              $denominations = array_combine(\VanguardLTE\Game::$values['denomination'], \VanguardLTE\Game::$values['denomination']);
+              $denominations = array_combine(\Aireset\Game::$values['denomination'], \Aireset\Game::$values['denomination']);
             @endphp
             {!! Form::select('denomination', $denominations, $edit ? $game->denomination : '1.00', ['class' => 'form-control']) !!}
         </div>
@@ -90,7 +90,7 @@
         </div>
 	</div>
 		@endif
-	
+
     <div class="col-md-6">
 		<div class="form-group">
             <label for="view">@lang('app.view')</label>

@@ -9,7 +9,7 @@
     <div class="form-group">
         <label>@lang('app.percent')</label>
         @php
-            $percents = array_combine(\VanguardLTE\Room::$values['percent'], \VanguardLTE\Room::$values['percent']);
+            $percents = array_combine(\Aireset\Room::$values['percent'], \Aireset\Room::$values['percent']);
         @endphp
         {!! Form::select('percent', $percents, $edit ? $room->percent : '90', ['class' => 'form-control']) !!}
     </div>
@@ -28,7 +28,7 @@
     <div class="form-group">
         <label>Order</label>
         @php
-            $orders = array_combine(\VanguardLTE\Room::$values['orderby'], \VanguardLTE\Room::$values['orderby']);
+            $orders = array_combine(\Aireset\Room::$values['orderby'], \Aireset\Room::$values['orderby']);
         @endphp
         {!! Form::select('orderby', $orders, $edit ? $room->orderby : '', ['class' => 'form-control']) !!}
     </div>
@@ -38,7 +38,7 @@
     <div class="form-group">
         <label>Currency</label>
         @php
-            $currencies = array_combine(\VanguardLTE\Room::$values['currency'], \VanguardLTE\Room::$values['currency']);
+            $currencies = array_combine(\Aireset\Room::$values['currency'], \Aireset\Room::$values['currency']);
         @endphp
         {!! Form::select('currency', $currencies, $edit ? $room->currency : '', ['class' => 'form-control']) !!}
     </div>

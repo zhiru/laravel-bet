@@ -60,7 +60,7 @@
 							<div class="form-group">
 								@php
 									$filter = ['' => '---'];
-                                    $shifts = \VanguardLTE\OpenShift::where('room_id', Auth::user()->room_id)->orderBy('start_date', 'DESC')->get();
+                                    $shifts = \Aireset\OpenShift::where('room_id', Auth::user()->room_id)->orderBy('start_date', 'DESC')->get();
                                     if( count($shifts) ){
                                         foreach($shifts AS $shift){
                                             $filter[$shift->id] = $shift->id . ' - ' . $shift->start_date;
@@ -115,7 +115,7 @@
 					</thead>
                             </table>
                         </div>
-                        {{ $rooms_stat->appends(Request::except('page'))->links() }}						
+                        {{ $rooms_stat->appends(Request::except('page'))->links() }}
                     </div>
 		</div>
 	</section>

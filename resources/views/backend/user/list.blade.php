@@ -14,9 +14,9 @@
 	<section class="content">
 
 		@if(auth()->user()->hasRole('cashier') &&
-			$openshift = \VanguardLTE\OpenShift::where(['shop_id' => auth()->user()->shop_id, 'end_date' => NULL])->first())
+			$openshift = \Aireset\OpenShift::where(['shop_id' => auth()->user()->shop_id, 'end_date' => NULL])->first())
 
-			@php $summ = \VanguardLTE\User::where(['shop_id' => auth()->user()->shop_id, 'role_id' => 1])->sum('balance'); @endphp
+			@php $summ = \Aireset\User::where(['shop_id' => auth()->user()->shop_id, 'role_id' => 1])->sum('balance'); @endphp
 
 			<div class="row">
 				<div class="col-lg-3 col-xs-6">
@@ -186,7 +186,7 @@
 						</table>
 					</div>
 					{{ $users->appends(Request::except('page'))->links() }}
-				</div>				
+				</div>
 			</div>
 	</section>
 

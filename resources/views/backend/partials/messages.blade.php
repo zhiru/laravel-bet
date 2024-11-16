@@ -5,7 +5,7 @@
         $path = preg_replace('/[0-9]+/', '*', $path);
 
         $infos = [];
-        $allInfos = \VanguardLTE\Info::where('link', $path)->get();
+        $allInfos = \Aireset\Info::where('link', $path)->get();
         if( count($allInfos) ){
             foreach($allInfos AS $infoItem){
                 if($infoItem->user){
@@ -42,8 +42,8 @@
     $messages = [];
 
     if( Auth::check() ){
-        $infoShop = \VanguardLTE\Shop::find(auth()->user()->shop_id);
-        $infoGames = \VanguardLTE\JPG::select(\DB::raw('SUM(percent) AS percent'))->where(['shop_id' => auth()->user()->shop_id, 'view' => 1])->first();
+        $infoShop = \Aireset\Shop::find(auth()->user()->shop_id);
+        $infoGames = \Aireset\JPG::select(\DB::raw('SUM(percent) AS percent'))->where(['shop_id' => auth()->user()->shop_id, 'view' => 1])->first();
 
         if( $infoShop && ($infoGames->percent+$infoShop->percent) >= 100 ){
             $text = '<p>JPG = <b>' .$infoGames->percent. '%</b></p>';

@@ -168,7 +168,7 @@
 							<div class="form-group">
 								<label>@lang('app.order')</label>
 								@php
-									$orders = array_combine(array_merge([''], \VanguardLTE\Shop::$values['orderby']), array_merge([''], \VanguardLTE\Shop::$values['orderby']));
+									$orders = array_combine(array_merge([''], \Aireset\Shop::$values['orderby']), array_merge([''], \Aireset\Shop::$values['orderby']));
 								@endphp
 								{!! Form::select('order', $orders, Request::get('status'), ['id' => 'order', 'class' => 'form-control']) !!}
 							</div>
@@ -177,7 +177,7 @@
 							<div class="form-group">
 								<label>@lang('app.currency')</label>
 								@php
-									$currencies = array_combine(\VanguardLTE\Shop::$values['currency'], \VanguardLTE\Shop::$values['currency']);
+									$currencies = array_combine(\Aireset\Shop::$values['currency'], \Aireset\Shop::$values['currency']);
 								@endphp
 								{!! Form::select('currency', $currencies, Request::get('currency'), ['id' => 'currency', 'class' => 'form-control']) !!}
 							</div>

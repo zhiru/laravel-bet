@@ -12,7 +12,7 @@
 	<div>
 <font size="4"><a href="https://t.me/betito247"></a></font>
 </div>
-              
+
     @include('backend.partials.messages')
 
     <div class="login-box-body">
@@ -56,5 +56,5 @@
 @stop
 
 @section('scripts')
-  {!! JsValidator::formRequest('VanguardLTE\Http\Requests\Auth\LoginRequest', '#login-form') !!}
+  {!! JsValidator::formRequest('Aireset\Http\Requests\Auth\LoginRequest', '#login-form') !!}
 @stop

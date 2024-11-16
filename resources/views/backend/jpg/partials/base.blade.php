@@ -30,7 +30,7 @@
     <div class="form-group">
         <label>@lang('app.percent')</label>
         @php
-            $percents = array_combine(\VanguardLTE\JPG::$values['percent'], \VanguardLTE\JPG::$values['percent']);
+            $percents = array_combine(\Aireset\JPG::$values['percent'], \Aireset\JPG::$values['percent']);
         @endphp
         {!! Form::select('percent', $percents, $edit ? $jackpot->percent : '', ['class' => 'form-control']) !!}
     </div>

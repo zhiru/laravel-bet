@@ -10,7 +10,7 @@
         <div class="form-group">
             <label>@lang('app.percent')</label>
             @php
-                $percents = array_combine(\VanguardLTE\Shop::$values['percent'], \VanguardLTE\Shop::$values['percent']);
+                $percents = array_combine(\Aireset\Shop::$values['percent'], \Aireset\Shop::$values['percent']);
             @endphp
             {!! Form::select('percent', $percents, $edit ? $shop->percent : old('percent')?:'90', ['class' => 'form-control']) !!}
         </div>
@@ -29,7 +29,7 @@
         <div class="form-group">
             <label> @lang('app.order')</label>
             @php
-                $orders = array_combine(\VanguardLTE\Shop::$values['orderby'], \VanguardLTE\Shop::$values['orderby']);
+                $orders = array_combine(\Aireset\Shop::$values['orderby'], \Aireset\Shop::$values['orderby']);
             @endphp
             {!! Form::select('orderby', $orders, $edit ? $shop->orderby : old('orderby'), ['class' => 'form-control']) !!}
         </div>
@@ -39,7 +39,7 @@
         <div class="form-group">
             <label> @lang('app.currency')</label>
             @php
-                $currencies = array_combine(\VanguardLTE\Shop::$values['currency'], \VanguardLTE\Shop::$values['currency']);
+                $currencies = array_combine(\Aireset\Shop::$values['currency'], \Aireset\Shop::$values['currency']);
             @endphp
             {!! Form::select('currency', $currencies, $edit ? $shop->currency : old('currency')?:'USD', ['class' => 'form-control']) !!}
         </div>

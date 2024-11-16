@@ -70,7 +70,7 @@
 							<div class="form-group">
 								@php
 									 $filter = ['' => '---'];
-                                    $shifts = \VanguardLTE\OpenShift::where('shop_id', Auth::user()->shop_id)->orderBy('start_date', 'DESC')->get();
+                                    $shifts = \Aireset\OpenShift::where('shop_id', Auth::user()->shop_id)->orderBy('start_date', 'DESC')->get();
                                     if( count($shifts) ){
                                         foreach($shifts AS $shift){
                                             $filter[$shift->id] = $shift->id . ' - ' . $shift->start_date;
@@ -110,7 +110,7 @@
 					<tbody>
 					@if (count($statistics))
 						@foreach ($statistics as $stat)
-							@if($stat instanceof \VanguardLTE\ShopStat)
+							@if($stat instanceof \Aireset\ShopStat)
 								@include('backend.stat.partials.row_shop_stat')
 							@else
 								@include('backend.stat.partials.row_stat')
@@ -132,7 +132,7 @@
                             </table>
                         </div>
 						{{ $statistics->appends(Request::except('page'))->links() }}
-                    </div>			
+                    </div>
 		</div>
 	</section>
 

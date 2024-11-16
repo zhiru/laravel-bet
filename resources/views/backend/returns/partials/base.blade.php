@@ -16,7 +16,7 @@
     <div class="form-group">
         <label>@lang('app.percent')</label>
         @php
-            $percents = array_combine(\VanguardLTE\Returns::$values['percent'], \VanguardLTE\Returns::$values['percent']);
+            $percents = array_combine(\Aireset\Returns::$values['percent'], \Aireset\Returns::$values['percent']);
         @endphp
         {!! Form::select('percent', $percents, $edit ? $return->percent : '', ['class' => 'form-control']) !!}
     </div>

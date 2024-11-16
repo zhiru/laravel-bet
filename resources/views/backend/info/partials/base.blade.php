@@ -13,7 +13,7 @@
         <div class="form-group">
             <label>@lang('app.role')</label>
             @php
-                $allRoles = \VanguardLTE\Role::where('slug', '!=', 'user')->where('id', '<=', auth()->user()->role_id)->pluck('name');
+                $allRoles = \Aireset\Role::where('slug', '!=', 'user')->where('id', '<=', auth()->user()->role_id)->pluck('name');
             @endphp
             <select name="roles[]" id="roles" class="form-control" >
                 <option value="" >---</option>
