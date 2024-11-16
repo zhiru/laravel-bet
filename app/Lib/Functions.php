@@ -6,9 +6,9 @@
  * Time: 17:15
  */
 
-namespace VanguardLTE\Lib;
+namespace Aireset\Lib;
 
-use VanguardLTE\Returns;
+use Aireset\Returns;
 
 class Functions {
 

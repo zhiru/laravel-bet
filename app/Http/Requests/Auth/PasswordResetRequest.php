@@ -1,13 +1,13 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Auth
+<?php
+namespace Aireset\Http\Requests\Auth
 {
-    class PasswordResetRequest extends \VanguardLTE\Http\Requests\Request
+    class PasswordResetRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {
             return [
-                'token' => 'required', 
-                'email' => 'required|email', 
+                'token' => 'required',
+                'email' => 'required|email',
                 'password' => 'required|confirmed|min:6'
             ];
         }

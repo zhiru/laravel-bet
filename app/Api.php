@@ -1,13 +1,13 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Api extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'apis';
         protected $fillable = [
-            'keygen', 
-            'ip', 
-            'shop_id', 
+            'keygen',
+            'ip',
+            'shop_id',
             'status'
         ];
         public static function boot()
@@ -16,7 +16,7 @@ namespace VanguardLTE
         }
         public function shop()
         {
-            return $this->belongsTo('VanguardLTE\Shop', 'shop_id');
+            return $this->belongsTo('Aireset\Shop', 'shop_id');
         }
     }
 

@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Requests
+<?php
+namespace Aireset\Http\Requests
 {
     abstract class BinaryFileUploadRequest extends Request
     {
@@ -22,7 +22,7 @@ namespace VanguardLTE\Http\Requests
         }
         protected function failedValidation(\Illuminate\Contracts\Validation\Validator $validator)
         {
-            if( $this->fs->has($this->fileName) ) 
+            if( $this->fs->has($this->fileName) )
             {
                 $this->fs->delete($this->fileName);
             }

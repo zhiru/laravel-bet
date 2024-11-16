@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Jobs;
+namespace Aireset\Jobs;
 
 use Illuminate\Bus\Queueable;
 

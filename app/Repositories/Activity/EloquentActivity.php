@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Repositories\Activity;
+namespace Aireset\Repositories\Activity;
 
-use VanguardLTE\Services\Logging\UserActivity\Activity;
+use Aireset\Services\Logging\UserActivity\Activity;
 use Carbon\Carbon;
 use DB;
 
@@ -43,7 +43,7 @@ class EloquentActivity implements ActivityRepository
     public function paginateActivities($perPage = 20, $search = null, $userids = [])
     {
         $query = Activity::with('user');
-		
+
         return $this->paginateAndFilterResults($perPage, $search, $query, $userids);
     }
 
@@ -58,13 +58,13 @@ class EloquentActivity implements ActivityRepository
         if ($search) {
             $query->where('description', 'LIKE', "%$search%");
         }
-				
+
 		if( count($userids) ){
 			$query->whereIn('user_id', $userids);
 		} else{
 			$query->where('user_id', 0);
 		}
-		
+
         $result = $query->orderBy('created_at', 'DESC')
             ->paginate($perPage);
 

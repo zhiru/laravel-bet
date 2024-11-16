@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class CheckPermissions
     {
@@ -10,11 +10,11 @@ namespace VanguardLTE\Http\Middleware
         }
         public function handle($request, \Closure $next, $permissions)
         {
-            if( !is_array($permissions) ) 
+            if( !is_array($permissions) )
             {
                 $permissions = explode('|', $permissions);
             }
-            if( $this->auth->guest() || !$request->user()->hasPermission($permissions) ) 
+            if( $this->auth->guest() || !$request->user()->hasPermission($permissions) )
             {
                 abort(403, 'Forbidden.');
             }

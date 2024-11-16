@@ -1,15 +1,15 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class GameBank extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'game_bank';
         protected $fillable = [
-            'slots', 
-            'little', 
-            'table_bank', 
-            'fish', 
-            'bonus', 
+            'slots',
+            'little',
+            'table_bank',
+            'fish',
+            'bonus',
             'shop_id'
         ];
         public static function boot()
@@ -18,7 +18,7 @@ namespace VanguardLTE
         }
         public function shop()
         {
-            return $this->belongsTo('VanguardLTE\Shop');
+            return $this->belongsTo('Aireset\Shop');
         }
     }
 

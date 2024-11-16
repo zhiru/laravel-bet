@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Repositories\Permission;
+namespace Aireset\Repositories\Permission;
 
 interface PermissionRepository
 {

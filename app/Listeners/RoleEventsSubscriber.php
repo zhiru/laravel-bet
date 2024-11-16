@@ -1,12 +1,12 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Events\Role\Created;
-use VanguardLTE\Events\Role\PermissionsUpdated;
-use VanguardLTE\Events\Role\Updated;
-use VanguardLTE\Events\Role\Deleted;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Events\Role\Created;
+use Aireset\Events\Role\PermissionsUpdated;
+use Aireset\Events\Role\Updated;
+use Aireset\Events\Role\Deleted;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class RoleEventsSubscriber
 {
@@ -62,7 +62,7 @@ class RoleEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\RoleEventsSubscriber';
+        $class = 'Aireset\Listeners\RoleEventsSubscriber';
 
         $events->listen(Created::class, "{$class}@onCreate");
         $events->listen(Updated::class, "{$class}@onUpdate");

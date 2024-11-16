@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class Authenticate
     {
@@ -10,28 +10,28 @@ namespace VanguardLTE\Http\Middleware
         }
         public function handle($request, \Closure $next)
         {
-            if( $this->auth->guest() ) 
+            if( $this->auth->guest() )
             {
-                if( $request->ajax() || $request->wantsJson() ) 
+                if( $request->ajax() || $request->wantsJson() )
                 {
                     return response('Unauthorized.', 401);
                 }
-                else if( !$request->is('api*') ) 
+                else if( !$request->is('api*') )
                 {
-                    if( $request->is('backend*') ) 
+                    if( $request->is('backend*') )
                     {
                         return redirect()->guest('/backend/login');
                     }
                     return redirect()->guest('login');
                 }
             }
-            else if( !$request->is('api*') ) 
+            else if( !$request->is('api*') )
             {
-                if( $request->is('backend*') && !$this->auth->user()->hasPermission('access.admin.panel') ) 
+                if( $request->is('backend*') && !$this->auth->user()->hasPermission('access.admin.panel') )
                 {
                     return redirect()->to('/');
                 }
-                if( !$request->is('backend*') && $this->auth->user()->hasPermission('access.admin.panel') ) 
+                if( !$request->is('backend*') && $this->auth->user()->hasPermission('access.admin.panel') )
                 {
                     return redirect()->to('/backend/');
                 }

@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Repositories\Country\CountryRepository;
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\BankStat;
+use Aireset\Repositories\Country\CountryRepository;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\BankStat;
 
 class BankStatTransformer extends TransformerAbstract
 {

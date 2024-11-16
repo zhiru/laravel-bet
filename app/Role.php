@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Role extends \jeremykenedy\LaravelRoles\Models\Role
     {

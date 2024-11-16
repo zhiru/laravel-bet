@@ -1,11 +1,11 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class GameCategory extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'game_categories';
         protected $fillable = [
-            'game_id', 
+            'game_id',
             'category_id'
         ];
         public $timestamps = false;
@@ -15,11 +15,11 @@ namespace VanguardLTE
         }
         public function category()
         {
-            return $this->belongsTo('VanguardLTE\Category');
+            return $this->belongsTo('Aireset\Category');
         }
         public function game()
         {
-            return $this->belongsTo('VanguardLTE\Game');
+            return $this->belongsTo('Aireset\Game');
         }
     }
 

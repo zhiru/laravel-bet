@@ -1,19 +1,19 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Auth\Password
+<?php
+namespace Aireset\Http\Controllers\Api\Auth\Password
 {
-    class ResetController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class ResetController extends \Aireset\Http\Controllers\Api\ApiController
     {
         public function __construct()
         {
         }
-        public function index(\VanguardLTE\Http\Requests\Auth\PasswordResetRequest $request)
+        public function index(\Aireset\Http\Requests\Auth\PasswordResetRequest $request)
         {
             $credentials = $request->only('email', 'password', 'password_confirmation', 'token');
             $response = Password::reset($credentials, function($user, $password)
             {
                 $this->resetPassword($user, $password);
             });
-            switch( $response ) 
+            switch( $response )
             {
                 case Password::PASSWORD_RESET:
                     return $this->respondWithSuccess();
@@ -25,7 +25,7 @@ namespace VanguardLTE\Http\Controllers\Api\Auth\Password
         {
             $user->password = $password;
             $user->save();
-            event(new \VanguardLTE\Events\User\ResetedPasswordViaEmail($user));
+            event(new \Aireset\Events\User\ResetedPasswordViaEmail($user));
         }
     }
 

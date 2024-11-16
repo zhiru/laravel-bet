@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Role
+<?php
+namespace Aireset\Http\Requests\Role
 {
-    class CreateRoleRequest extends \VanguardLTE\Http\Requests\Request
+    class CreateRoleRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {

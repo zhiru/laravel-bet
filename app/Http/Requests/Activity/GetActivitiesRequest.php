@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Activity
+<?php
+namespace Aireset\Http\Requests\Activity
 {
-    class GetActivitiesRequest extends \VanguardLTE\Http\Requests\Request
+    class GetActivitiesRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {

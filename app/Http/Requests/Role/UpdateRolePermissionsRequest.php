@@ -1,13 +1,13 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Role
+<?php
+namespace Aireset\Http\Requests\Role
 {
-    class UpdateRolePermissionsRequest extends \VanguardLTE\Http\Requests\Request
+    class UpdateRolePermissionsRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {
-            $permissions = \VanguardLTE\Permission::pluck('id')->toArray();
+            $permissions = \Aireset\Permission::pluck('id')->toArray();
             return [
-                'permissions' => 'required|array', 
+                'permissions' => 'required|array',
                 'permissions.*' => \Illuminate\Validation\Rule::in($permissions)
             ];
         }

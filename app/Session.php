@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Session extends \Illuminate\Database\Eloquent\Model
     {

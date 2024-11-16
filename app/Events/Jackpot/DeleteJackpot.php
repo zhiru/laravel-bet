@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\Jackpot;
+namespace Aireset\Events\Jackpot;
 
-use VanguardLTE\Jackpot;
+use Aireset\Jackpot;
 
 class DeleteJackpot
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Shop;
+use Aireset\Shop;
 
 class ShopTransformer extends TransformerAbstract
 {

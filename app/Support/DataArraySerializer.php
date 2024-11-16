@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Support;
+namespace Aireset\Support;
 
 use League\Fractal\Pagination\PaginatorInterface;
 

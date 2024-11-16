@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Auth\Social
+<?php
+namespace Aireset\Http\Requests\Auth\Social
 {
-    class SaveEmailRequest extends \VanguardLTE\Http\Requests\Request
+    class SaveEmailRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {

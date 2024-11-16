@@ -1,17 +1,17 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Auth\Password
+<?php
+namespace Aireset\Http\Controllers\Api\Auth\Password
 {
-    class RemindController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class RemindController extends \Aireset\Http\Controllers\Api\ApiController
     {
         public function __construct()
         {
         }
-        public function index(\VanguardLTE\Http\Requests\Auth\PasswordRemindRequest $request, \VanguardLTE\Repositories\User\UserRepository $users)
+        public function index(\Aireset\Http\Requests\Auth\PasswordRemindRequest $request, \Aireset\Repositories\User\UserRepository $users)
         {
             $user = $users->findByEmail($request->email);
             $token = Password::getRepository()->create($user);
-            $user->notify(new \VanguardLTE\Notifications\ResetPassword($token));
-            event(new \VanguardLTE\Events\User\RequestedPasswordResetEmail($user));
+            $user->notify(new \Aireset\Notifications\ResetPassword($token));
+            event(new \Aireset\Events\User\RequestedPasswordResetEmail($user));
             return $this->respondWithSuccess();
         }
     }

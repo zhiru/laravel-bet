@@ -1,24 +1,24 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Authorization
+<?php
+namespace Aireset\Http\Controllers\Api\Authorization
 {
-    class RolePermissionsController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class RolePermissionsController extends \Aireset\Http\Controllers\Api\ApiController
     {
         private $roles = null;
-        public function __construct(\VanguardLTE\Repositories\Role\RoleRepository $roles)
+        public function __construct(\Aireset\Repositories\Role\RoleRepository $roles)
         {
             $this->roles = $roles;
             $this->middleware('auth');
             $this->middleware('permission:permissions.manage');
         }
-        public function show(\VanguardLTE\Role $role)
+        public function show(\Aireset\Role $role)
         {
-            return $this->respondWithCollection($role->cachedPermissions(), new \VanguardLTE\Transformers\PermissionTransformer());
+            return $this->respondWithCollection($role->cachedPermissions(), new \Aireset\Transformers\PermissionTransformer());
         }
-        public function update(\VanguardLTE\Role $role, \VanguardLTE\Http\Requests\Role\UpdateRolePermissionsRequest $request)
+        public function update(\Aireset\Role $role, \Aireset\Http\Requests\Role\UpdateRolePermissionsRequest $request)
         {
             $this->roles->updatePermissions($role->id, $request->permissions);
-            event(new \VanguardLTE\Events\Role\PermissionsUpdated());
-            return $this->respondWithCollection($role->cachedPermissions(), new \VanguardLTE\Transformers\PermissionTransformer());
+            event(new \Aireset\Events\Role\PermissionsUpdated());
+            return $this->respondWithCollection($role->cachedPermissions(), new \Aireset\Transformers\PermissionTransformer());
         }
     }
 

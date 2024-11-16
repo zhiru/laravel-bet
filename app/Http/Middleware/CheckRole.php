@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class CheckRole
     {
@@ -10,7 +10,7 @@ namespace VanguardLTE\Http\Middleware
         }
         public function handle($request, \Closure $next, $role)
         {
-            if( $this->auth->guest() || !$request->user()->hasRole($role) ) 
+            if( $this->auth->guest() || !$request->user()->hasRole($role) )
             {
                 abort(403);
             }

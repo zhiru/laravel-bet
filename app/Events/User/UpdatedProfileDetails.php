@@ -1,5 +1,5 @@
 <?php
 
-namespace VanguardLTE\Events\User;
+namespace Aireset\Events\User;
 
 class UpdatedProfileDetails {}

@@ -1,12 +1,12 @@
 <?php
 
-namespace VanguardLTE\Notifications;
+namespace Aireset\Notifications;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use VanguardLTE\User;
+use Aireset\User;
 
 class UserRegistered extends Notification
 {

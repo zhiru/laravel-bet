@@ -1,16 +1,16 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class ShopZero
     {
         public function handle($request, \Closure $next)
         {
-            if( auth()->check() ) 
+            if( auth()->check() )
             {
             }
-            if( auth()->user()->shop_id == 0 ) 
+            if( auth()->user()->shop_id == 0 )
             {
-                if( auth()->user()->role_id == 6 ) 
+                if( auth()->user()->role_id == 6 )
                 {
                     return $next($request);
                 }

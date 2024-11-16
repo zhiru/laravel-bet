@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Transactions
+<?php
+namespace Aireset\Http\Controllers\Api\Transactions
 {
-    class TransactionsController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class TransactionsController extends \Aireset\Http\Controllers\Api\ApiController
     {
         public function __construct()
         {
@@ -9,20 +9,20 @@ namespace VanguardLTE\Http\Controllers\Api\Transactions
         }
         public function index(\Illuminate\Http\Request $request)
         {
-            if( auth()->user()->isUser() ) 
+            if( auth()->user()->isUser() )
             {
-                $transactions = \VanguardLTE\Transaction::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC');
+                $transactions = \Aireset\Transaction::where('user_id', auth()->user()->id)->orderBy('created_at', 'DESC');
             }
             else
             {
-                $transactions = \VanguardLTE\Transaction::orderBy('created_at', 'DESC');
+                $transactions = \Aireset\Transaction::orderBy('created_at', 'DESC');
             }
-            if( $request->user_id != '' ) 
+            if( $request->user_id != '' )
             {
                 $transactions = $transactions->where('user_id', $request->user_id);
             }
             $transactions = $transactions->paginate(100000);
-            return $this->respondWithPagination($transactions, new \VanguardLTE\Transformers\TransactionTransformer());
+            return $this->respondWithPagination($transactions, new \Aireset\Transformers\TransactionTransformer());
         }
     }
 

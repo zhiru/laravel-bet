@@ -1,10 +1,10 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class VerifyCsrfToken extends \Illuminate\Foundation\Http\Middleware\VerifyCsrfToken
     {
         protected $except = [
-            '/game/*/server', 
+            '/game/*/server',
             '/coinpayment/ipn'
         ];
     }

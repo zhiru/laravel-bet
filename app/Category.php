@@ -1,15 +1,15 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Category extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'categories';
         protected $fillable = [
-            'title', 
-            'parent', 
-            'position', 
-            'href', 
-            'original_id', 
+            'title',
+            'parent',
+            'position',
+            'href',
+            'original_id',
             'shop_id'
         ];
         public $timestamps = false;
@@ -24,15 +24,15 @@ namespace VanguardLTE
         public function inner()
         {
             $shop_id = (\Auth::check() ? \Auth::user()->shop_id : 0);
-            return $this->hasMany('VanguardLTE\Category', 'parent')->orderBy('position', 'ASC');
+            return $this->hasMany('Aireset\Category', 'parent')->orderBy('position', 'ASC');
         }
         public function parentOne()
         {
-            return $this->hasOne('VanguardLTE\Category', 'id', 'parent');
+            return $this->hasOne('Aireset\Category', 'id', 'parent');
         }
         public function games()
         {
-            return $this->hasMany('VanguardLTE\GameCategory', 'category_id');
+            return $this->hasMany('Aireset\GameCategory', 'category_id');
         }
     }
 

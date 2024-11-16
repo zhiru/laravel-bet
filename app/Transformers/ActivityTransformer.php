@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Repositories\User\UserRepository;
-use VanguardLTE\Services\Logging\UserActivity\Activity;
-use VanguardLTE\User;
+use Aireset\Repositories\User\UserRepository;
+use Aireset\Services\Logging\UserActivity\Activity;
+use Aireset\User;
 
 class ActivityTransformer extends TransformerAbstract
 {

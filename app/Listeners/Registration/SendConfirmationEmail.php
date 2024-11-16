@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Listeners\Registration;
+namespace Aireset\Listeners\Registration;
 
-use VanguardLTE\Events\User\Registered;
-use VanguardLTE\Notifications\EmailConfirmation;
-use VanguardLTE\Repositories\User\UserRepository;
+use Aireset\Events\User\Registered;
+use Aireset\Notifications\EmailConfirmation;
+use Aireset\Repositories\User\UserRepository;
 
 class SendConfirmationEmail
 {

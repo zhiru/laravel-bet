@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Exceptions;
+namespace Aireset\Exceptions;
 
 use Throwable;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -67,23 +67,23 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
         //return parent::render($request, $e);
     }
-	
+
 	protected function unauthenticated($request, AuthenticationException $exception)
 	{
 		$guard = array_get($exception->guards(),0);
-		
-		
+
+
 		if ($request->is('backend*')){
 			return $request->expectsJson()
 							? response()->json(['message' => $exception->getMessage()], 401)
 							: redirect()->guest(route('backend.auth.login'));
-			
+
 		} else {
 			return $request->expectsJson()
 							? response()->json(['message' => $exception->getMessage()], 401)
 							: redirect()->guest(route('frontend.game.list'));
 		}
-		
+
 	}
 
     private function getMessageFromStatusCode($code)

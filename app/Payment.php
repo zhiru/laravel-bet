@@ -1,13 +1,13 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Payment extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'payments';
         protected $fillable = [
-            'user_id', 
-            'summ', 
-            'status', 
+            'user_id',
+            'summ',
+            'status',
             'system'
         ];
         public $timestamps = false;

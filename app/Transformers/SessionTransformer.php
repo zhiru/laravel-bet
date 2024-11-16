@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use Carbon\Carbon;
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\User;
+use Aireset\User;
 
 class SessionTransformer extends TransformerAbstract
 {

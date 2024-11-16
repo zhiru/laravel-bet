@@ -1,10 +1,10 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Web\Backend
+<?php
+namespace Aireset\Http\Controllers\Web\Backend
 {
-    class ActivityController extends \VanguardLTE\Http\Controllers\Controller
+    class ActivityController extends \Aireset\Http\Controllers\Controller
     {
         private $activities = null;
-        public function __construct(\VanguardLTE\Repositories\Activity\ActivityRepository $activities)
+        public function __construct(\Aireset\Repositories\Activity\ActivityRepository $activities)
         {
             $this->middleware('auth');
             $this->middleware('permission:access.admin.panel');
@@ -14,13 +14,13 @@ namespace VanguardLTE\Http\Controllers\Web\Backend
         public function index(\Illuminate\Http\Request $request)
         {
 			/*
-            $checked = new \VanguardLTE\Lib\LicenseDK();
+            $checked = new \Aireset\Lib\LicenseDK();
             $license_notifications_array = $checked->aplVerifyLicenseDK(null, 0);
-            if( $license_notifications_array['notification_case'] != 'notification_license_ok' ) 
+            if( $license_notifications_array['notification_case'] != 'notification_license_ok' )
             {
                 return redirect()->route('frontend.page.error_license');
             }
-            if( !$this->security() ) 
+            if( !$this->security() )
             {
                 return redirect()->route('frontend.page.error_license');
             }*/
@@ -28,21 +28,21 @@ namespace VanguardLTE\Http\Controllers\Web\Backend
             $adminView = true;
             $shops = auth()->user()->availableShops();
             $ids = auth()->user()->availableUsers();
-            $activities = \VanguardLTE\UserActivity::select('user_activity.*')->orderBy('created_at', 'DESC');
-            if( $request->search != '' ) 
+            $activities = \Aireset\UserActivity::select('user_activity.*')->orderBy('created_at', 'DESC');
+            if( $request->search != '' )
             {
                 $activities = $activities->where('description', 'like', '%' . $request->search . '%');
             }
-            if( $request->ip != '' ) 
+            if( $request->ip != '' )
             {
                 $activities = $activities->where('ip_address', 'like', '%' . $request->ip . '%');
             }
-            if( count($ids) ) 
+            if( count($ids) )
             {
                 $activities = $activities->whereIn('user_id', $ids);
             }
             $activities = $activities->whereIn('shop_id', $shops);
-            if( $request->username != '' ) 
+            if( $request->username != '' )
             {
                 $activities = $activities->join('users', 'users.id', '=', 'user_activity.user_id');
                 $activities = $activities->where('users.username', 'like', '%' . $request->username . '%');
@@ -50,11 +50,11 @@ namespace VanguardLTE\Http\Controllers\Web\Backend
             $activities = $activities->paginate($perPage);
             return view('backend.activity.index', compact('activities', 'adminView'));
         }
-        public function userActivity(\VanguardLTE\User $user, \Illuminate\Http\Request $request)
+        public function userActivity(\Aireset\User $user, \Illuminate\Http\Request $request)
         {
             $perPage = 20;
             $adminView = true;
-            if( !auth()->user()->isAvailable($user) ) 
+            if( !auth()->user()->isAvailable($user) )
             {
                 return redirect()->back()->withErrors([trans('app.wrong_user')]);
             }
@@ -63,9 +63,9 @@ namespace VanguardLTE\Http\Controllers\Web\Backend
         }
         public function clear()
         {
-            if( auth()->user()->hasRole('admin') ) 
+            if( auth()->user()->hasRole('admin') )
             {
-                \VanguardLTE\UserActivity::where('id', '>', '0')->delete();
+                \Aireset\UserActivity::where('id', '>', '0')->delete();
                 return redirect()->back()->withSuccess(trans('app.logs_removed'));
             }
             else
@@ -75,15 +75,15 @@ namespace VanguardLTE\Http\Controllers\Web\Backend
         }
 /*        public function security()
         {
-            if( config('LicenseDK.APL_INCLUDE_KEY_CONFIG') != 'wi9qydosuimsnls5zoe5q298evkhim0ughx1w16qybs2fhlcpn' ) 
+            if( config('LicenseDK.APL_INCLUDE_KEY_CONFIG') != 'wi9qydosuimsnls5zoe5q298evkhim0ughx1w16qybs2fhlcpn' )
             {
                 return false;
             }
-            if( md5_file(base_path() . '/app/Lib/LicenseDK.php') != '3c5aece202a4218a19ec8c209817a74e' ) 
+            if( md5_file(base_path() . '/app/Lib/LicenseDK.php') != '3c5aece202a4218a19ec8c209817a74e' )
             {
                 return false;
             }
-            if( md5_file(base_path() . '/config/LicenseDK.php') != '951a0e23768db0531ff539d246cb99cd' ) 
+            if( md5_file(base_path() . '/config/LicenseDK.php') != '951a0e23768db0531ff539d246cb99cd' )
             {
                 return false;
             }
@@ -92,7 +92,7 @@ namespace VanguardLTE\Http\Controllers\Web\Backend
     }
 
 }
-namespace 
+namespace
 {
     function onkXppk3PRSZPackRnkDOJaZ9()
     {

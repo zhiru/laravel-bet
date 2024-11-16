@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\Shop;
+namespace Aireset\Events\Shop;
 
-use VanguardLTE\Shop;
+use Aireset\Shop;
 
 class ShopEdited
 {

@@ -1,11 +1,11 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class InfoShop extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'info_shop';
         protected $fillable = [
-            'info_id', 
+            'info_id',
             'shop_id'
         ];
         public $timestamps = false;
@@ -15,7 +15,7 @@ namespace VanguardLTE
         }
         public function shop()
         {
-            return $this->belongsTo('VanguardLTE\Shop');
+            return $this->belongsTo('Aireset\Shop');
         }
     }
 

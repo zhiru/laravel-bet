@@ -1,12 +1,12 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Auth
+<?php
+namespace Aireset\Http\Requests\Auth
 {
-    class LoginRequest extends \VanguardLTE\Http\Requests\Request
+    class LoginRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {
             return [
-                'username' => 'required', 
+                'username' => 'required',
                 'password' => 'required'
             ];
         }

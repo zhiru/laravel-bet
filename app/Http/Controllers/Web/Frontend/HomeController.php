@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Web\Frontend
+<?php
+namespace Aireset\Http\Controllers\Web\Frontend
 {
-    class HomeController extends \VanguardLTE\Http\Controllers\Controller
+    class HomeController extends \Aireset\Http\Controllers\Controller
     {
         public function index(\Illuminate\Http\Request $request)
         {

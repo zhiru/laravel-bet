@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Services\Auth\Api;
+namespace Aireset\Services\Auth\Api;
 
 use Carbon\Carbon;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;

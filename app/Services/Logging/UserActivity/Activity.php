@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Services\Logging\UserActivity;
+namespace Aireset\Services\Logging\UserActivity;
 
-use VanguardLTE\User;
+use Aireset\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Activity extends Model

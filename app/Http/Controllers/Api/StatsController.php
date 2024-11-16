@@ -1,11 +1,11 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api
+<?php
+namespace Aireset\Http\Controllers\Api
 {
     class StatsController extends ApiController
     {
         private $users = null;
         private $activities = null;
-        public function __construct(\VanguardLTE\Repositories\User\UserRepository $users, \VanguardLTE\Repositories\Activity\ActivityRepository $activities)
+        public function __construct(\Aireset\Repositories\User\UserRepository $users, \Aireset\Repositories\Activity\ActivityRepository $activities)
         {
             $this->middleware('auth');
             $this->users = $users;
@@ -13,7 +13,7 @@ namespace VanguardLTE\Http\Controllers\Api
         }
         public function index()
         {
-            if( \Auth::user()->hasRole('Admin') ) 
+            if( \Auth::user()->hasRole('Admin') )
             {
                 return $this->adminStats();
             }
@@ -23,15 +23,15 @@ namespace VanguardLTE\Http\Controllers\Api
         {
             $usersPerMonth = $this->users->countOfNewUsersPerMonth(\Carbon\Carbon::now()->subYear()->startOfMonth(), \Carbon\Carbon::now()->endOfMonth());
             $usersPerStatus = [
-                'total' => $this->users->count(), 
-                'new' => $this->users->newUsersCount(), 
-                'banned' => $this->users->countByStatus(\VanguardLTE\Support\Enum\UserStatus::BANNED)
+                'total' => $this->users->count(),
+                'new' => $this->users->newUsersCount(),
+                'banned' => $this->users->countByStatus(\Aireset\Support\Enum\UserStatus::BANNED)
             ];
             $latestRegistrations = $this->users->latest(7);
-            $resource = new \League\Fractal\Resource\Collection($latestRegistrations, new \VanguardLTE\Transformers\UserTransformer());
+            $resource = new \League\Fractal\Resource\Collection($latestRegistrations, new \Aireset\Transformers\UserTransformer());
             return $this->respondWithArray([
-                'users_per_month' => $usersPerMonth, 
-                'users_per_status' => $usersPerStatus, 
+                'users_per_month' => $usersPerMonth,
+                'users_per_status' => $usersPerStatus,
                 'latest_registrations' => $this->fractal()->createData($resource)->toArray()
             ]);
         }

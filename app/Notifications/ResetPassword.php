@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Notifications;
+namespace Aireset\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;

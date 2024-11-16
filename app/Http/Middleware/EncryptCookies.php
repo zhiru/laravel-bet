@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class EncryptCookies extends \Illuminate\Cookie\Middleware\EncryptCookies
     {

@@ -1,5 +1,5 @@
 <?php
 
-namespace VanguardLTE\Events\Settings;
+namespace Aireset\Events\Settings;
 
 class Updated {}

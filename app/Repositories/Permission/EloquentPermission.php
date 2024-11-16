@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Repositories\Permission;
+namespace Aireset\Repositories\Permission;
 
-use VanguardLTE\Events\Permission\Created;
-use VanguardLTE\Events\Permission\Deleted;
-use VanguardLTE\Events\Permission\Updated;
-use VanguardLTE\Permission;
+use Aireset\Events\Permission\Created;
+use Aireset\Events\Permission\Deleted;
+use Aireset\Events\Permission\Updated;
+use Aireset\Permission;
 use Cache;
 
 class EloquentPermission implements PermissionRepository

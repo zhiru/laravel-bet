@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class RedirectIfAuthenticated
     {
@@ -10,7 +10,7 @@ namespace VanguardLTE\Http\Middleware
         }
         public function handle($request, \Closure $next)
         {
-            if( $this->auth->check() ) 
+            if( $this->auth->check() )
             {
                 return redirect('/');
             }

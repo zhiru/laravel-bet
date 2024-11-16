@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api
+<?php
+namespace Aireset\Http\Controllers\Api
 {
     class SettingsController extends ApiController
     {

@@ -1,16 +1,16 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class BotGame extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'bots_games';
         protected $fillable = [
-            'game_id', 
-            'device', 
-            'login', 
-            'bet', 
-            'win', 
-            'date_time', 
+            'game_id',
+            'device',
+            'login',
+            'bet',
+            'win',
+            'date_time',
             'shop_id'
         ];
         public $timestamps = false;
@@ -20,7 +20,7 @@ namespace VanguardLTE
         }
         public function game()
         {
-            return $this->hasOne('VanguardLTE\Game', 'id', 'game_id');
+            return $this->hasOne('Aireset\Game', 'id', 'game_id');
         }
     }
 

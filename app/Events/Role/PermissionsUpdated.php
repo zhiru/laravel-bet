@@ -1,5 +1,5 @@
 <?php
 
-namespace VanguardLTE\Events\Role;
+namespace Aireset\Events\Role;
 
 class PermissionsUpdated {}

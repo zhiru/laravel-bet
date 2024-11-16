@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Repositories\Session;
+namespace Aireset\Repositories\Session;
 
 interface SessionRepository
 {

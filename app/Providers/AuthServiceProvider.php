@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Providers;
+namespace Aireset\Providers;
 
 use Illuminate\Contracts\Auth\Access\Gate as GateContract;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
-use VanguardLTE\User;
+use Aireset\User;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -14,7 +14,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        'VanguardLTE\Model' => 'VanguardLTE\Policies\ModelPolicy',
+        'Aireset\Model' => 'Aireset\Policies\ModelPolicy',
     ];
 
     /**
@@ -35,7 +35,7 @@ class AuthServiceProvider extends ServiceProvider
         \Blade::directive('permission', function ($expression) {
             return "<?php if (\\Auth::user()->hasPermission({$expression})) : ?>";
         });
-        
+
         \Blade::directive('endpermission', function ($expression) {
             return "<?php endif; ?>";
         });

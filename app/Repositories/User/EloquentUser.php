@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Repositories\User;
+namespace Aireset\Repositories\User;
 
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\Role;
-use VanguardLTE\Services\Upload\UserAvatarManager;
-use VanguardLTE\User;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\Role;
+use Aireset\Services\Upload\UserAvatarManager;
+use Aireset\User;
 use Carbon\Carbon;
 use DB;
 use Illuminate\Database\SQLiteConnection;

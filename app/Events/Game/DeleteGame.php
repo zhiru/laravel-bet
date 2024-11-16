@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\Game;
+namespace Aireset\Events\Game;
 
-use VanguardLTE\Game;
+use Aireset\Game;
 
 class DeleteGame
 {

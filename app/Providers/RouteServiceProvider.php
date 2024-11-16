@@ -1,12 +1,12 @@
 <?php
 
-namespace VanguardLTE\Providers;
+namespace Aireset\Providers;
 
 use Route;
-use VanguardLTE\Permission;
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\Repositories\Session\SessionRepository;
-use VanguardLTE\Repositories\User\UserRepository;
+use Aireset\Permission;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\Repositories\Session\SessionRepository;
+use Aireset\Repositories\User\UserRepository;
 use Illuminate\Routing\Router;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
@@ -18,13 +18,13 @@ class RouteServiceProvider extends ServiceProvider
      * In addition, it is set as the URL generator's root namespace.
      * @var string
      */
-    protected $webNamespace = 'VanguardLTE\Http\Controllers\Web';
+    protected $webNamespace = 'Aireset\Http\Controllers\Web';
 
     /**
      * This namespace is applied to the controller routes in your api routes file.
      * @var string
      */
-    protected $apiNamespace = 'VanguardLTE\Http\Controllers\Api';
+    protected $apiNamespace = 'Aireset\Http\Controllers\Api';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -47,7 +47,7 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function map()
     {
-        if ($this->app['config']->get('auth.expose_api')) {			
+        if ($this->app['config']->get('auth.expose_api')) {
             $this->mapApiRoutes();
         }
 

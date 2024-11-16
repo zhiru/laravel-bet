@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Services\Auth\Api;
+namespace Aireset\Services\Auth\Api;
 
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use VanguardLTE\User;
+use Aireset\User;
 use Illuminate\Contracts\Config\Repository as ConfigContract;
 
 class TokenFactory

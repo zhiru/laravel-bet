@@ -1,13 +1,13 @@
-<?php 
-namespace VanguardLTE\Http\Requests\User
+<?php
+namespace Aireset\Http\Requests\User
 {
-    class UpdateLoginDetailsRequest extends \VanguardLTE\Http\Requests\Request
+    class UpdateLoginDetailsRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {
             $user = $this->getUserForUpdate();
             return [
-                'username' => 'regex:/^[A-Za-z0-9]+$/|nullable|unique:users,username,' . $user->id, 
+                'username' => 'regex:/^[A-Za-z0-9]+$/|nullable|unique:users,username,' . $user->id,
                 'password' => 'nullable|min:6|confirmed'
             ];
         }

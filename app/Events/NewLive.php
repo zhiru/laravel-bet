@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Events;
+namespace Aireset\Events;
 
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;

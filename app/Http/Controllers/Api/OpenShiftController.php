@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api
+<?php
+namespace Aireset\Http\Controllers\Api
 {
     class OpenShiftController extends ApiController
     {
@@ -11,57 +11,57 @@ namespace VanguardLTE\Http\Controllers\Api
         {
             $user = auth()->user();
             if( $user->hasRole([
-                'admin', 
-                'distributor', 
+                'admin',
+                'distributor',
                 'cashier'
-            ]) ) 
+            ]) )
             {
-                $users = \VanguardLTE\User::where([
-                    'shop_id' => $user->shop_id, 
+                $users = \Aireset\User::where([
+                    'shop_id' => $user->shop_id,
                     'role_id' => 1
                 ])->where('balance', '>', 0)->count();
-                if( $users ) 
+                if( $users )
                 {
                     return $this->errorWrongArgs($users . ' with balance > 0');
                 }
-                $count = \VanguardLTE\OpenShift::where([
-                    'user_id' => auth()->user()->id, 
+                $count = \Aireset\OpenShift::where([
+                    'user_id' => auth()->user()->id,
                     'end_date' => null
                 ])->first();
-                if( $count ) 
+                if( $count )
                 {
-                    $summ = \VanguardLTE\User::where([
-                        'shop_id' => $user->shop_id, 
+                    $summ = \Aireset\User::where([
+                        'shop_id' => $user->shop_id,
                         'role_id' => 1
                     ])->sum('balance');
                     $count->update([
-                        'end_date' => \Carbon\Carbon::now(), 
-                        'last_banks' => $count->banks(), 
-                        'last_returns' => $count->returns(), 
+                        'end_date' => \Carbon\Carbon::now(),
+                        'last_banks' => $count->banks(),
+                        'last_returns' => $count->returns(),
                         'users' => $summ
                     ]);
                 }
-                $shop = \VanguardLTE\Shop::find($user->shop_id);
-                if( !$shop ) 
+                $shop = \Aireset\Shop::find($user->shop_id);
+                if( !$shop )
                 {
                     return $this->errorWrongArgs(trans('app.wrong_shop'));
                 }
-                if( $count ) 
+                if( $count )
                 {
-                    \VanguardLTE\OpenShift::create([
-                        'start_date' => \Carbon\Carbon::now(), 
-                        'balance' => $shop->balance, 
-                        'old_banks' => $count->banks(), 
-                        'user_id' => auth()->user()->id, 
+                    \Aireset\OpenShift::create([
+                        'start_date' => \Carbon\Carbon::now(),
+                        'balance' => $shop->balance,
+                        'old_banks' => $count->banks(),
+                        'user_id' => auth()->user()->id,
                         'shop_id' => $user->shop_id
                     ]);
                 }
                 else
                 {
-                    \VanguardLTE\OpenShift::create([
-                        'start_date' => \Carbon\Carbon::now(), 
-                        'balance' => $shop->balance, 
-                        'user_id' => auth()->user()->id, 
+                    \Aireset\OpenShift::create([
+                        'start_date' => \Carbon\Carbon::now(),
+                        'balance' => $shop->balance,
+                        'user_id' => auth()->user()->id,
                         'shop_id' => $user->shop_id
                     ]);
                 }
@@ -71,22 +71,22 @@ namespace VanguardLTE\Http\Controllers\Api
         }
         public function info(\Illuminate\Http\Request $request)
         {
-            if( !$request->shop_id ) 
+            if( !$request->shop_id )
             {
                 return $this->errorWrongArgs(trans('app.wrong_shop'));
             }
-            if( !in_array($request->shop_id, auth()->user()->availableShops()) ) 
+            if( !in_array($request->shop_id, auth()->user()->availableShops()) )
             {
                 return $this->errorWrongArgs(trans('app.wrong_shop'));
             }
-            $shift = \VanguardLTE\OpenShift::where([
-                'shop_id' => $request->shop_id, 
+            $shift = \Aireset\OpenShift::where([
+                'shop_id' => $request->shop_id,
                 'end_date' => null
             ])->first();
-            if( $shift ) 
+            if( $shift )
             {
                 return $this->respondWithArray([
-                    'id' => $shift->id, 
+                    'id' => $shift->id,
                     'start_date' => $shift->start_date
                 ]);
             }

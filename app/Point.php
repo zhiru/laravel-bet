@@ -1,19 +1,19 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Point extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'points';
         protected $fillable = [
-            'rating', 
-            'name', 
-            'sum', 
-            'bonus', 
-            'img', 
-            'pay', 
-            'exchange', 
-            'title', 
-            'description', 
+            'rating',
+            'name',
+            'sum',
+            'bonus',
+            'img',
+            'pay',
+            'exchange',
+            'title',
+            'description',
             'shop_id'
         ];
         public static function boot()
@@ -23,7 +23,7 @@ namespace VanguardLTE
         public function exchange_rate($real = false)
         {
             $temp = explode('|', $this->exchange);
-            if( $real ) 
+            if( $real )
             {
                 return $temp[0] / 100;
             }

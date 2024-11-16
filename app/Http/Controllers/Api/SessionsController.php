@@ -1,10 +1,10 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api
+<?php
+namespace Aireset\Http\Controllers\Api
 {
     class SessionsController extends ApiController
     {
         private $sessions = null;
-        public function __construct(\VanguardLTE\Repositories\Session\SessionRepository $sessions)
+        public function __construct(\Aireset\Repositories\Session\SessionRepository $sessions)
         {
             $this->middleware('auth');
             $this->middleware('session.database');
@@ -13,7 +13,7 @@ namespace VanguardLTE\Http\Controllers\Api
         public function show($session)
         {
             $this->authorize('manage-session', $session);
-            return $this->respondWithItem($session, new \VanguardLTE\Transformers\SessionTransformer());
+            return $this->respondWithItem($session, new \Aireset\Transformers\SessionTransformer());
         }
         public function destroy($session)
         {

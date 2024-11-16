@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\User
+<?php
+namespace Aireset\Http\Requests\User
 {
-    class UpdateDetailsRequest extends \VanguardLTE\Http\Requests\Request
+    class UpdateDetailsRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {

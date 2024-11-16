@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Games
+<?php
+namespace Aireset\Http\Controllers\Api\Games
 {
-    class GamesController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class GamesController extends \Aireset\Http\Controllers\Api\ApiController
     {
         public function __construct()
         {
@@ -9,52 +9,52 @@ namespace VanguardLTE\Http\Controllers\Api\Games
         }
         public function index(\Illuminate\Http\Request $request)
         {
-            if( !$request->shop_id ) 
+            if( !$request->shop_id )
             {
                 return $this->errorWrongArgs('Empty shop id');
             }
             $shops = auth()->user()->shops(true)->toArray();
-            if( !(count($shops) && in_array($request->shop_id, $shops)) ) 
+            if( !(count($shops) && in_array($request->shop_id, $shops)) )
             {
                 return $this->errorWrongArgs('Wrong shop id');
             }
-            $games = \VanguardLTE\Game::select('games.*')->orderBy('created_at', 'DESC');
-            if( $request->id != '' ) 
+            $games = \Aireset\Game::select('games.*')->orderBy('created_at', 'DESC');
+            if( $request->id != '' )
             {
                 $games = $games->where('id', $request->id);
             }
-            if( $request->name != '' ) 
+            if( $request->name != '' )
             {
                 $names = explode('|', $request->name);
                 $games = $games->whereIn('name', (array)$names);
             }
-            if( $request->search != '' ) 
+            if( $request->search != '' )
             {
                 $games = $games->where('title', 'like', '%' . $request->search . '%');
             }
-            if( $request->shop_id != '' ) 
+            if( $request->shop_id != '' )
             {
                 $games = $games->where('shop_id', $request->shop_id);
             }
-            if( $request->device != '' ) 
+            if( $request->device != '' )
             {
                 $devices = explode('|', $request->device);
                 $games = $games->whereIn('device', (array)$devices);
             }
-            if( $request->view != '' ) 
+            if( $request->view != '' )
             {
                 $games = $games->where('view', $request->view);
             }
-            if( $request->category != '' ) 
+            if( $request->category != '' )
             {
                 $categories = explode('|', $request->category);
-                foreach( $categories as $cat ) 
+                foreach( $categories as $cat )
                 {
-                    $inner = \VanguardLTE\Category::where([
-                        'parent' => $cat, 
+                    $inner = \Aireset\Category::where([
+                        'parent' => $cat,
                         'shop_id' => auth()->user()->shop_id
                     ])->get();
-                    if( $inner ) 
+                    if( $inner )
                     {
                         $categories = array_merge($categories, $inner->pluck('id')->toArray());
                     }
@@ -63,21 +63,21 @@ namespace VanguardLTE\Http\Controllers\Api\Games
                 $games = $games->whereIn('game_categories.category_id', (array)$categories);
             }
             $games = $games->paginate(100000);
-            return $this->respondWithPagination($games, new \VanguardLTE\Transformers\GameTransformer());
+            return $this->respondWithPagination($games, new \Aireset\Transformers\GameTransformer());
         }
         public function go(\Illuminate\Http\Request $request, $game)
         {
             $userId = auth()->user()->id;
-            $object = '\VanguardLTE\Games\\' . $game . '\SlotSettings';
+            $object = '\Aireset\Games\\' . $game . '\SlotSettings';
             $slot = new $object($game, $userId);
-            $game = \VanguardLTE\Game::where('name', $game)->first();
+            $game = \Aireset\Game::where('name', $game)->first();
             $is_api = true;
             return view('frontend.games.list.' . $game->name, compact('slot', 'game', 'is_api'));
         }
         public function server(\Illuminate\Http\Request $request, $game)
         {
             $userId = auth()->user()->id;
-            $object = '\VanguardLTE\Games\\' . $game . '\Server';
+            $object = '\Aireset\Games\\' . $game . '\Server';
             $server = new $object();
             echo $server->get($request, $game, $userId);
         }

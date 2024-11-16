@@ -1,20 +1,20 @@
 <?php
 
-namespace VanguardLTE\Providers;
+namespace Aireset\Providers;
 
 use Carbon\Carbon;
-use VanguardLTE\Repositories\Activity\ActivityRepository;
-use VanguardLTE\Repositories\Activity\EloquentActivity;
-use VanguardLTE\Repositories\Country\CountryRepository;
-use VanguardLTE\Repositories\Country\EloquentCountry;
-use VanguardLTE\Repositories\Permission\EloquentPermission;
-use VanguardLTE\Repositories\Permission\PermissionRepository;
-use VanguardLTE\Repositories\Role\EloquentRole;
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\Repositories\Session\DbSession;
-use VanguardLTE\Repositories\Session\SessionRepository;
-use VanguardLTE\Repositories\User\EloquentUser;
-use VanguardLTE\Repositories\User\UserRepository;
+use Aireset\Repositories\Activity\ActivityRepository;
+use Aireset\Repositories\Activity\EloquentActivity;
+use Aireset\Repositories\Country\CountryRepository;
+use Aireset\Repositories\Country\EloquentCountry;
+use Aireset\Repositories\Permission\EloquentPermission;
+use Aireset\Repositories\Permission\PermissionRepository;
+use Aireset\Repositories\Role\EloquentRole;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\Repositories\Session\DbSession;
+use Aireset\Repositories\Session\SessionRepository;
+use Aireset\Repositories\User\EloquentUser;
+use Aireset\Repositories\User\UserRepository;
 use Illuminate\Support\ServiceProvider;
 
 use Illuminate\Support\Collection;

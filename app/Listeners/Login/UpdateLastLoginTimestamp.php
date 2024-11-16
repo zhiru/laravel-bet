@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Listeners\Login;
+namespace Aireset\Listeners\Login;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
-use VanguardLTE\Events\User\LoggedIn;
-use VanguardLTE\Repositories\User\UserRepository;
+use Aireset\Events\User\LoggedIn;
+use Aireset\Repositories\User\UserRepository;
 
 class UpdateLastLoginTimestamp
 {

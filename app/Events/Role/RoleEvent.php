@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\Role;
+namespace Aireset\Events\Role;
 
-use VanguardLTE\Role;
+use Aireset\Role;
 
 abstract class RoleEvent
 {

@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Auth
+<?php
+namespace Aireset\Http\Requests\Auth
 {
-    class PasswordRemindRequest extends \VanguardLTE\Http\Requests\Request
+    class PasswordRemindRequest extends \Aireset\Http\Requests\Request
     {
         public function rules()
         {

@@ -1,18 +1,18 @@
 <?php
 
-namespace VanguardLTE\Jobs;
+namespace Aireset\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use VanguardLTE\Category;
-use VanguardLTE\Game;
-use VanguardLTE\GameBank;
-use VanguardLTE\GameCategory;
-use VanguardLTE\Shop;
-use VanguardLTE\ShopCategory;
+use Aireset\Category;
+use Aireset\Game;
+use Aireset\GameBank;
+use Aireset\GameCategory;
+use Aireset\Shop;
+use Aireset\ShopCategory;
 
 
 class StartSync implements ShouldQueue

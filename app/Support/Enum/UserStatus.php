@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Support\Enum;
+namespace Aireset\Support\Enum;
 
 class UserStatus
 {

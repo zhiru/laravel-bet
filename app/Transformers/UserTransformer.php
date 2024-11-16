@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Repositories\Country\CountryRepository;
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\User;
+use Aireset\Repositories\Country\CountryRepository;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\User;
 
 class UserTransformer extends TransformerAbstract
 {
@@ -38,7 +38,7 @@ class UserTransformer extends TransformerAbstract
             return null;
         }
 
-		
+
         return $this->item($user->role, new RoleTransformer);
     }
 

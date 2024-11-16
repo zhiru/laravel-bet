@@ -1,68 +1,68 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Shop extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'shops';
         protected $fillable = [
-            'name', 
-            'balance', 
-            'percent', 
-            'frontend', 
-            'currency', 
-            'is_blocked', 
-            'orderby', 
-            'user_id', 
+            'name',
+            'balance',
+            'percent',
+            'frontend',
+            'currency',
+            'is_blocked',
+            'orderby',
+            'user_id',
             'pending'
         ];
         public static $values = [
             'currency' => [
                 '',
 				'ARS',
-                'EUR', 
-                'GBP', 
-                'USD', 
-                'AUD', 
-                'CAD', 
-                'NZD', 
-                'NOK', 
-                'SEK', 
-                'ZAR', 
-                'INR', 
-                'RUB', 
-                'CHF', 
-                'HRK', 
-                'HUF', 
-                'GEL', 
-                'UAH', 
-                'RON', 
-                'BRL', 
-                'MYR', 
-                'CNY', 
-                'JPY', 
-                'KRW', 
-                'IDR', 
-                'VND', 
-                'THB', 
+                'EUR',
+                'GBP',
+                'USD',
+                'AUD',
+                'CAD',
+                'NZD',
+                'NOK',
+                'SEK',
+                'ZAR',
+                'INR',
+                'RUB',
+                'CHF',
+                'HRK',
+                'HUF',
+                'GEL',
+                'UAH',
+                'RON',
+                'BRL',
+                'MYR',
+                'CNY',
+                'JPY',
+                'KRW',
+                'IDR',
+                'VND',
+                'THB',
                 'TND'
-            ], 
+            ],
             'percent' => [
-                98, 
-                96, 
-                94, 
-                92, 
-                90, 
-                88, 
-                86, 
-                84, 
-                82, 
+                98,
+                96,
+                94,
+                92,
+                90,
+                88,
+                86,
+                84,
+                82,
                 80
-            ], 
+            ],
             'orderby' => [
-                'AZ', 
-                'Rand', 
-                'RTP', 
-                'Count', 
+                'AZ',
+                'Rand',
+                'RTP',
+                'Count',
                 'Date'
             ]
         ];
@@ -82,7 +82,7 @@ namespace VanguardLTE
         {
             $arr = Shop::$values[$key];
             $labels = $arr;
-            if( $add_empty ) 
+            if( $add_empty )
             {
                 $array = array_combine(array_merge([''], $arr), array_merge(['---'], $labels));
             }
@@ -90,7 +90,7 @@ namespace VanguardLTE
             {
                 $array = array_combine($arr, $labels);
             }
-            if( $add_value ) 
+            if( $add_value )
             {
                 return [$add_value => $add_value] + $array;
             }
@@ -99,10 +99,10 @@ namespace VanguardLTE
         public function distributors_count()
         {
             $ShopUsers = ShopUser::where('shop_id', $this->id)->pluck('user_id');
-            if( count($ShopUsers) ) 
+            if( count($ShopUsers) )
             {
                 return User::whereIn('id', $ShopUsers)->whereIn('role_id', [
-                    4, 
+                    4,
                     5
                 ])->count();
             }
@@ -112,7 +112,7 @@ namespace VanguardLTE
         {
             $role = Role::where('slug', $role)->first();
             $ids = ShopUser::where('shop_id', $this->id)->groupBy('user_id')->pluck('user_id');
-            if( $ids ) 
+            if( $ids )
             {
                 return User::where('role_id', $role->id)->whereIn('id', $ids)->get();
             }
@@ -120,22 +120,22 @@ namespace VanguardLTE
         }
         public function categories()
         {
-            return $this->hasMany('VanguardLTE\ShopCategory', 'shop_id');
+            return $this->hasMany('Aireset\ShopCategory', 'shop_id');
         }
         public function users()
         {
-            return $this->hasMany('VanguardLTE\ShopUser');
+            return $this->hasMany('Aireset\ShopUser');
         }
         public function creator()
         {
-            return $this->hasOne('VanguardLTE\User', 'id', 'user_id');
+            return $this->hasOne('Aireset\User', 'id', 'user_id');
         }
         public function titles()
         {
             $cats = [];
-            if( $this->categories ) 
+            if( $this->categories )
             {
-                foreach( $this->categories as $category ) 
+                foreach( $this->categories as $category )
                 {
                     $cats[] = $category->category->title;
                 }

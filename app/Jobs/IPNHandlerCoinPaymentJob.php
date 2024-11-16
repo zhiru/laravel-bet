@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Jobs;
+namespace Aireset\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -8,8 +8,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-use VanguardLTE\Payment;
-use VanguardLTE\User;
+use Aireset\Payment;
+use Aireset\User;
 
 class IPNHandlerCoinPaymentJob implements ShouldQueue
 {
@@ -33,7 +33,7 @@ class IPNHandlerCoinPaymentJob implements ShouldQueue
      */
     public function handle() {
         // Do something...
-				
+
         /* DATA RESPONSE
           $this->trx['payment_id'];
           $this->trx['payment_address'];

@@ -1,9 +1,9 @@
 <?php
 
-namespace VanguardLTE\Repositories\User;
+namespace Aireset\Repositories\User;
 
 use Carbon\Carbon;
-use VanguardLTE\User;
+use Aireset\User;
 
 interface UserRepository
 {

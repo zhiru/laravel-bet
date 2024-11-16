@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Repositories\Session;
+namespace Aireset\Repositories\Session;
 
 use Carbon\Carbon;
 use Jenssegers\Agent\Agent;
-use VanguardLTE\Repositories\User\UserRepository;
+use Aireset\Repositories\User\UserRepository;
 use DB;
 
 class DbSession implements SessionRepository

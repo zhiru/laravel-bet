@@ -1,10 +1,10 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Authorization
+<?php
+namespace Aireset\Http\Controllers\Api\Authorization
 {
-    class PermissionsController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class PermissionsController extends \Aireset\Http\Controllers\Api\ApiController
     {
         private $permissions = null;
-        public function __construct(\VanguardLTE\Repositories\Permission\PermissionRepository $permissions)
+        public function __construct(\Aireset\Repositories\Permission\PermissionRepository $permissions)
         {
             $this->permissions = $permissions;
             $this->middleware('auth');
@@ -12,32 +12,32 @@ namespace VanguardLTE\Http\Controllers\Api\Authorization
         }
         public function index()
         {
-            return $this->respondWithCollection($this->permissions->all(), new \VanguardLTE\Transformers\PermissionTransformer());
+            return $this->respondWithCollection($this->permissions->all(), new \Aireset\Transformers\PermissionTransformer());
         }
-        public function store(\VanguardLTE\Http\Requests\Permission\CreatePermissionRequest $request)
+        public function store(\Aireset\Http\Requests\Permission\CreatePermissionRequest $request)
         {
             $permission = $this->permissions->create($request->only([
-                'name', 
-                'display_name', 
+                'name',
+                'display_name',
                 'description'
             ]));
-            return $this->respondWithItem($permission, new \VanguardLTE\Transformers\PermissionTransformer());
+            return $this->respondWithItem($permission, new \Aireset\Transformers\PermissionTransformer());
         }
-        public function show(\VanguardLTE\Permission $permission)
+        public function show(\Aireset\Permission $permission)
         {
-            return $this->respondWithItem($permission, new \VanguardLTE\Transformers\PermissionTransformer());
+            return $this->respondWithItem($permission, new \Aireset\Transformers\PermissionTransformer());
         }
-        public function update(\VanguardLTE\Permission $permission, \VanguardLTE\Http\Requests\Permission\UpdatePermissionRequest $request)
+        public function update(\Aireset\Permission $permission, \Aireset\Http\Requests\Permission\UpdatePermissionRequest $request)
         {
             $input = collect($request->all());
             $permission = $this->permissions->update($permission->id, $input->only([
-                'name', 
-                'display_name', 
+                'name',
+                'display_name',
                 'description'
             ])->toArray());
-            return $this->respondWithItem($permission, new \VanguardLTE\Transformers\PermissionTransformer());
+            return $this->respondWithItem($permission, new \Aireset\Transformers\PermissionTransformer());
         }
-        public function destroy(\VanguardLTE\Permission $permission, \VanguardLTE\Http\Requests\Permission\RemovePermissionRequest $request)
+        public function destroy(\Aireset\Permission $permission, \Aireset\Http\Requests\Permission\RemovePermissionRequest $request)
         {
             $this->permissions->delete($permission->id);
             return $this->respondWithSuccess();

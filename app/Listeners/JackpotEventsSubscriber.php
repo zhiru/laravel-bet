@@ -1,13 +1,13 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Activity;
-use VanguardLTE\Events\Jackpot\NewJackpot;
-use VanguardLTE\Events\Jackpot\JackpotEdited;
-use VanguardLTE\Events\Jackpot\DeleteJackpot;
-use VanguardLTE\Events\User\UserEventContract;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Activity;
+use Aireset\Events\Jackpot\NewJackpot;
+use Aireset\Events\Jackpot\JackpotEdited;
+use Aireset\Events\Jackpot\DeleteJackpot;
+use Aireset\Events\User\UserEventContract;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class JackpotEventsSubscriber
 {
@@ -63,7 +63,7 @@ class JackpotEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\JackpotEventsSubscriber';
+        $class = 'Aireset\Listeners\JackpotEventsSubscriber';
 
         $events->listen(NewJackpot::class, "{$class}@onNewJackpot");
         $events->listen(JackpotEdited::class, "{$class}@onJackpotEdited");

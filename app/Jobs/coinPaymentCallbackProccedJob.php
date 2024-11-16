@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Jobs;
+namespace Aireset\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -8,9 +8,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 
-use VanguardLTE\Payment;
-use VanguardLTE\User;
-use VanguardLTE\Transaction;
+use Aireset\Payment;
+use Aireset\User;
+use Aireset\Transaction;
 
 class coinPaymentCallbackProccedJob implements ShouldQueue
 {
@@ -34,44 +34,44 @@ class coinPaymentCallbackProccedJob implements ShouldQueue
     public function handle() {
 
         // Do something...
-				
+
 		if( isset($this->data['payload']['payment_id']) ){
-			
+
 			$payment = Transaction::find($this->data['payload']['payment_id']);
-			
+
 			if( $payment ){
-				
+
 				$user = User::find($payment->user_id);
-				
+
 				if( $user ){
-					
+
 					if( $this->data['request_type'] == 'schedule_transaction' ){
 						$status = $this->data['status'];
 					}
-					
+
 					if( $this->data['request_type'] == 'create_transaction' ){
 						$status = $this->data['transaction']['status'];
 					}
-					
-					
-					if( $status == 100 ){			
-						$payment->update(['status' => 1]);			
-						$user->update(['balance' => $user->balance + $payment->summ, 
-									'count_balance' => $user->count_balance + $payment->summ, 
+
+
+					if( $status == 100 ){
+						$payment->update(['status' => 1]);
+						$user->update(['balance' => $user->balance + $payment->summ,
+									'count_balance' => $user->count_balance + $payment->summ,
 									'count_return' => $user->count_return + $payment->summ ]);
-											 						
+
 					}
-					
-					if( $status == -1 ){			
-						$payment->update(['status' => -1]);					
+
+					if( $status == -1 ){
+						$payment->update(['status' => -1]);
 					}
-					
+
 				}
-				
+
 			}
 		}
-			
-					
+
+
 
         /* === Output data $request from task schedule === */
         // $this->data['request_type'] = 'schedule_transaction';

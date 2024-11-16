@@ -5,6 +5,9 @@ public/modules
 public/mix-manifest.json
 public/mix.js.map
 /storage/*.key
+/storage/framework/views/*
+/storage/framework/cache/*
+/storage/framework/testing/*
 /vendor
 .vscode/
 .env

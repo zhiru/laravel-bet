@@ -1,13 +1,13 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Activity;
-use VanguardLTE\Events\Returns\ReturnEdited;
-use VanguardLTE\Events\Returns\NewReturn;
-use VanguardLTE\Events\Returns\DeleteReturn;
-use VanguardLTE\Events\User\UserEventContract;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Activity;
+use Aireset\Events\Returns\ReturnEdited;
+use Aireset\Events\Returns\NewReturn;
+use Aireset\Events\Returns\DeleteReturn;
+use Aireset\Events\User\UserEventContract;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class ReturnEventsSubscriber
 {
@@ -63,7 +63,7 @@ class ReturnEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\ReturnEventsSubscriber';
+        $class = 'Aireset\Listeners\ReturnEventsSubscriber';
 
         $events->listen(NewReturn::class, "{$class}@onNewReturn");
         $events->listen(ReturnEdited::class, "{$class}@onReturnEdited");

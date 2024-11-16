@@ -1,11 +1,11 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class ShopUser extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'shops_user';
         protected $fillable = [
-            'shop_id', 
+            'shop_id',
             'user_id'
         ];
         public $timestamps = false;
@@ -15,11 +15,11 @@ namespace VanguardLTE
         }
         public function shop()
         {
-            return $this->belongsTo('VanguardLTE\Shop', 'shop_id');
+            return $this->belongsTo('Aireset\Shop', 'shop_id');
         }
         public function user()
         {
-            return $this->belongsTo('VanguardLTE\User', 'user_id');
+            return $this->belongsTo('Aireset\User', 'user_id');
         }
     }
 

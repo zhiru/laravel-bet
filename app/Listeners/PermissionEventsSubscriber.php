@@ -1,12 +1,12 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Activity;
-use VanguardLTE\Events\Permission\Created;
-use VanguardLTE\Events\Permission\Deleted;
-use VanguardLTE\Events\Permission\Updated;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Activity;
+use Aireset\Events\Permission\Created;
+use Aireset\Events\Permission\Deleted;
+use Aireset\Events\Permission\Updated;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class PermissionEventsSubscriber
 {
@@ -57,7 +57,7 @@ class PermissionEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\PermissionEventsSubscriber';
+        $class = 'Aireset\Listeners\PermissionEventsSubscriber';
 
         $events->listen(Created::class, "{$class}@onCreate");
         $events->listen(Updated::class, "{$class}@onUpdate");

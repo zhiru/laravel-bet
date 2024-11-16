@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class UserActivity extends \Illuminate\Database\Eloquent\Model
     {
@@ -11,7 +11,7 @@ namespace VanguardLTE
         }
         public function userdata()
         {
-            return $this->hasOne('VanguardLTE\User', 'id', 'user_id');
+            return $this->hasOne('Aireset\User', 'id', 'user_id');
         }
     }
 

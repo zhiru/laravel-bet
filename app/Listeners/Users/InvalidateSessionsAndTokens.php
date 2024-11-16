@@ -1,14 +1,14 @@
 <?php
 
-namespace VanguardLTE\Listeners\Users;
+namespace Aireset\Listeners\Users;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\Guard;
-use VanguardLTE\Events\User\Banned;
-use VanguardLTE\Events\User\LoggedIn;
-use VanguardLTE\Repositories\Session\SessionRepository;
-use VanguardLTE\Repositories\User\UserRepository;
-use VanguardLTE\Services\Auth\Api\Token;
+use Aireset\Events\User\Banned;
+use Aireset\Events\User\LoggedIn;
+use Aireset\Repositories\Session\SessionRepository;
+use Aireset\Repositories\User\UserRepository;
+use Aireset\Services\Auth\Api\Token;
 
 class InvalidateSessionsAndTokens
 {

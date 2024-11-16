@@ -1,14 +1,14 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class Info extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'info';
         protected $fillable = [
-            'link', 
-            'title', 
-            'text', 
-            'roles', 
+            'link',
+            'title',
+            'text',
+            'roles',
             'user_id'
         ];
         public $timestamps = false;
@@ -22,20 +22,20 @@ namespace VanguardLTE
         }
         public function user()
         {
-            return $this->hasOne('VanguardLTE\User', 'id', 'user_id');
+            return $this->hasOne('Aireset\User', 'id', 'user_id');
         }
         public function shops()
         {
-            return $this->hasMany('VanguardLTE\InfoShop');
+            return $this->hasMany('Aireset\InfoShop');
         }
         public function shops_info()
         {
             $results = [];
-            if( $this->shops ) 
+            if( $this->shops )
             {
-                foreach( $this->shops as $shop ) 
+                foreach( $this->shops as $shop )
                 {
-                    if( $shop->shop ) 
+                    if( $shop->shop )
                     {
                         $results[] = $shop->shop->name;
                     }

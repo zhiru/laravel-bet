@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\User;
+namespace Aireset\Events\User;
 
-use VanguardLTE\User;
+use Aireset\User;
 
 class Banned
 {

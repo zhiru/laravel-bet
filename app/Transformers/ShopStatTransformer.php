@@ -1,11 +1,11 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Repositories\Country\CountryRepository;
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\ShopStat;
+use Aireset\Repositories\Country\CountryRepository;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\ShopStat;
 
 class ShopStatTransformer extends TransformerAbstract
 {

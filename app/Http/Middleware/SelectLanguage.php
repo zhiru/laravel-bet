@@ -1,11 +1,11 @@
-<?php 
-namespace VanguardLTE\Http\Middleware
+<?php
+namespace Aireset\Http\Middleware
 {
     class SelectLanguage
     {
         public function handle($request, \Closure $next)
         {
-            if( auth()->check() ) 
+            if( auth()->check() )
             {
                 \App::setLocale(auth()->user()->language);
             }

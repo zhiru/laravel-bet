@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Requests
+<?php
+namespace Aireset\Http\Requests
 {
     abstract class Request extends \Illuminate\Foundation\Http\FormRequest
     {

@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Notifications;
+namespace Aireset\Notifications;
 
 use Illuminate\Notifications\Notification;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -51,6 +51,6 @@ class EmailConfirmation extends Notification
             ->line(trans('app.confirm_email_on_link_below'))
             ->line(trans('app.confirm_email') . ': ' . $this->token);
             //->action(trans('app.confirm_email'), route('frontend.register.confirm-email', $this->token));
-			
+
     }
 }

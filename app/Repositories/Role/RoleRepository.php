@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Repositories\Role;
+namespace Aireset\Repositories\Role;
 
-use VanguardLTE\Role;
+use Aireset\Role;
 
 interface RoleRepository
 {

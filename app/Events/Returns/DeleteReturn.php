@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\Returns;
+namespace Aireset\Events\Returns;
 
-use VanguardLTE\Returns;
+use Aireset\Returns;
 
 class DeleteReturn
 {

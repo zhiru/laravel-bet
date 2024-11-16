@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Services\Auth\Api;
+namespace Aireset\Services\Auth\Api;
 
 use Tymon\JWTAuth\Providers\LaravelServiceProvider;
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Events\Permission;
+namespace Aireset\Events\Permission;
 
-use VanguardLTE\Permission;
+use Aireset\Permission;
 
 abstract class PermissionEvent
 {

@@ -1,22 +1,22 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class OpenShift extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'open_shift';
         protected $fillable = [
-            'user_id', 
-            'balance', 
-            'balance_in', 
-            'balance_out', 
-            'users', 
-            'money_in', 
-            'money_out', 
-            'old_banks', 
-            'last_banks', 
-            'last_returns', 
-            'shop_id', 
-            'start_date', 
+            'user_id',
+            'balance',
+            'balance_in',
+            'balance_out',
+            'users',
+            'money_in',
+            'money_out',
+            'old_banks',
+            'last_banks',
+            'last_returns',
+            'shop_id',
+            'start_date',
             'end_date'
         ];
         public $timestamps = false;
@@ -26,11 +26,11 @@ namespace VanguardLTE
         }
         public function shop()
         {
-            return $this->belongsTo('VanguardLTE\Shop', 'shop_id');
+            return $this->belongsTo('Aireset\Shop', 'shop_id');
         }
         public function user()
         {
-            return $this->belongsTo('VanguardLTE\User', 'user_id');
+            return $this->belongsTo('Aireset\User', 'user_id');
         }
         public function banks()
         {
@@ -38,7 +38,7 @@ namespace VanguardLTE
             $pincodesBalance = Pincode::where('shop_id', $this->shop_id)->sum('nominal');
             $JPG = JPG::where(['shop_id' => $this->shop_id])->sum('balance');
             $gamesBalanceAll = 0;
-            foreach( $gamesBalance as $temp ) 
+            foreach( $gamesBalance as $temp )
             {
                 $gamesBalanceAll += ($temp->balance + $JPG);
             }
@@ -47,18 +47,18 @@ namespace VanguardLTE
         public function returns()
         {
             return User::where([
-                'shop_id' => $this->shop_id, 
+                'shop_id' => $this->shop_id,
                 'role_id' => 1
             ])->sum('count_return');
         }
         public function profit()
         {
             $stat = StatGame::where('shop_id', $this->shop_id);
-            if( $this->start_date ) 
+            if( $this->start_date )
             {
                 $stat = $stat->where('date_time', '>=', $this->start_date);
             }
-            if( $this->end_date ) 
+            if( $this->end_date )
             {
                 $stat = $stat->where('date_time', '<=', $this->end_date);
             }

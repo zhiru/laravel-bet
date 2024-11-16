@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Lib;
+namespace Aireset\Lib;
 
 class Downloader {
 

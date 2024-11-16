@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Events;
+namespace Aireset\Events;
 
 abstract class Event
 {

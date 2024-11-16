@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class BonusPreset extends \Illuminate\Database\Eloquent\Model
     {

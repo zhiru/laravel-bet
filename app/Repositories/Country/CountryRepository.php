@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Repositories\Country;
+namespace Aireset\Repositories\Country;
 
 interface CountryRepository
 {

@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Providers;
+namespace Aireset\Providers;
 
 use Collective\Html\FormBuilder;
 use Collective\Html\HtmlBuilder;

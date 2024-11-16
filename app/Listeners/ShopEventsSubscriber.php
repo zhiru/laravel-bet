@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Activity;
-use VanguardLTE\Events\Shop\ShopEdited;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Activity;
+use Aireset\Events\Shop\ShopEdited;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class ShopEventsSubscriber
 {
@@ -45,7 +45,7 @@ class ShopEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\ShopEventsSubscriber';
+        $class = 'Aireset\Listeners\ShopEventsSubscriber';
 
         $events->listen(ShopEdited::class, "{$class}@onShopEdit");
     }

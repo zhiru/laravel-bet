@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Permission
+<?php
+namespace Aireset\Http\Requests\Permission
 {
     class UpdatePermissionRequest extends BasePermissionRequest
     {
@@ -7,7 +7,7 @@ namespace VanguardLTE\Http\Requests\Permission
         {
             $permission = $this->route('permission');
             return [
-                'slug' => 'required|regex:/^[a-zA-Z0-9\-_\.]+$/|unique:permissions,slug,' . $permission->id, 
+                'slug' => 'required|regex:/^[a-zA-Z0-9\-_\.]+$/|unique:permissions,slug,' . $permission->id,
                 'name' => 'required'
             ];
         }

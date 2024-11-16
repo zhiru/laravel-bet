@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Services\Auth\Api;
+namespace Aireset\Services\Auth\Api;
 
 class JWT extends \Tymon\JWTAuth\JWT
 {

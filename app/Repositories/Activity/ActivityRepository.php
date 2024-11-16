@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Repositories\Activity;
+namespace Aireset\Repositories\Activity;
 
 use Carbon\Carbon;
 use Illuminate\Contracts\Pagination\Paginator;

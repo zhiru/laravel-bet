@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Support\Authorization;
+namespace Aireset\Support\Authorization;
 
 use Cache;
 use Config;
-use VanguardLTE\Permission;
+use Aireset\Permission;
 
 trait AuthorizationRoleTrait
 {

@@ -1,14 +1,14 @@
 <?php
 
-namespace VanguardLTE\Jobs;
+namespace Aireset\Jobs;
 
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use VanguardLTE\Game;
-use VanguardLTE\GameWin;
+use Aireset\Game;
+use Aireset\GameWin;
 
 
 class UpdateGames implements ShouldQueue
@@ -28,8 +28,8 @@ class UpdateGames implements ShouldQueue
         $this->model = $model;
         $this->ids = $ids;
         $this->data = $data;
-		
-		
+
+
     }
 
     /**
@@ -38,19 +38,19 @@ class UpdateGames implements ShouldQueue
      * @return void
      */
     public function handle(){
-		
+
 		//Info($this->data);
 		//Info($this->ids);
-		
+
         if( $this->model == 'game' ){
             $models = Game::whereIn('id', $this->ids)->get();
         }
         if( $this->model == 'game_win' ){
             $models = GameWin::whereIn('id', $this->ids)->get();
         }
-		
+
         if( $models && is_array($this->data) && count($this->data) > 0 ){
-						
+
             foreach($models AS $model){
                 foreach($this->data AS $key=>$value){
 					//Info($model->$key);
@@ -65,7 +65,7 @@ class UpdateGames implements ShouldQueue
 					//Info($model->id . ' isDirty ');
 					$model->save();
 				}
-                
+
             }
         }
     }

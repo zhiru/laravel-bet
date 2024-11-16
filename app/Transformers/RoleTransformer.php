@@ -1,9 +1,9 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-// VanguardLTE\Role;
+// Aireset\Role;
 use jeremykenedy\LaravelRoles\Models\Role;
 
 class RoleTransformer extends TransformerAbstract

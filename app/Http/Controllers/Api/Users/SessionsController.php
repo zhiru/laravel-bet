@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Users
+<?php
+namespace Aireset\Http\Controllers\Api\Users
 {
-    class SessionsController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class SessionsController extends \Aireset\Http\Controllers\Api\ApiController
     {
         public function __construct()
         {
@@ -9,9 +9,9 @@ namespace VanguardLTE\Http\Controllers\Api\Users
             $this->middleware('permission:users.manage');
             $this->middleware('session.database');
         }
-        public function index(\VanguardLTE\User $user, \VanguardLTE\Repositories\Session\SessionRepository $sessions)
+        public function index(\Aireset\User $user, \Aireset\Repositories\Session\SessionRepository $sessions)
         {
-            return $this->respondWithCollection($sessions->getUserSessions($user->id), new \VanguardLTE\Transformers\SessionTransformer());
+            return $this->respondWithCollection($sessions->getUserSessions($user->id), new \Aireset\Transformers\SessionTransformer());
         }
     }
 

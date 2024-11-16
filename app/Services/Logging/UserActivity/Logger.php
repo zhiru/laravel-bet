@@ -1,10 +1,10 @@
 <?php
 
-namespace VanguardLTE\Services\Logging\UserActivity;
+namespace Aireset\Services\Logging\UserActivity;
 
 use Illuminate\Contracts\Auth\Factory;
-use VanguardLTE\Repositories\Activity\ActivityRepository;
-use VanguardLTE\User;
+use Aireset\Repositories\Activity\ActivityRepository;
+use Aireset\User;
 use Illuminate\Http\Request;
 
 class Logger

@@ -1,12 +1,12 @@
 <?php
 
-namespace VanguardLTE\Repositories\Role;
+namespace Aireset\Repositories\Role;
 
-use VanguardLTE\Events\Role\Created;
-use VanguardLTE\Events\Role\Deleted;
-use VanguardLTE\Events\Role\Updated;
-use VanguardLTE\Role;
-use VanguardLTE\Support\Authorization\CacheFlusherTrait;
+use Aireset\Events\Role\Created;
+use Aireset\Events\Role\Deleted;
+use Aireset\Events\Role\Updated;
+use Aireset\Role;
+use Aireset\Support\Authorization\CacheFlusherTrait;
 use DB;
 
 class EloquentRole implements RoleRepository

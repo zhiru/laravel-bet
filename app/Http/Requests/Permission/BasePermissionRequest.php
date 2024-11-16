@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Permission
+<?php
+namespace Aireset\Http\Requests\Permission
 {
-    class BasePermissionRequest extends \VanguardLTE\Http\Requests\Request
+    class BasePermissionRequest extends \Aireset\Http\Requests\Request
     {
         public function messages()
         {

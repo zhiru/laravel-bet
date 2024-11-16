@@ -1,17 +1,17 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Repositories\Country\CountryRepository;
-use VanguardLTE\Repositories\Role\RoleRepository;
-use VanguardLTE\StatGame;
+use Aireset\Repositories\Country\CountryRepository;
+use Aireset\Repositories\Role\RoleRepository;
+use Aireset\StatGame;
 
 class GameStatTransformer extends TransformerAbstract
 {
     public function transform(StatGame $stat)
-    {		
-		
+    {
+
         return [
             'id' => $stat->id,
             'game' => $stat->game,

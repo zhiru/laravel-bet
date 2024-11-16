@@ -1,11 +1,11 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class ShopCategory extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'shop_categories';
         protected $fillable = [
-            'shop_id', 
+            'shop_id',
             'category_id'
         ];
         public $timestamps = false;
@@ -15,7 +15,7 @@ namespace VanguardLTE
         }
         public function category()
         {
-            return $this->belongsTo('VanguardLTE\Category');
+            return $this->belongsTo('Aireset\Category');
         }
     }
 

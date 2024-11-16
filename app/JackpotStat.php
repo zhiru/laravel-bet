@@ -1,14 +1,14 @@
-<?php 
-namespace VanguardLTE
+<?php
+namespace Aireset
 {
     class JackpotStat extends \Illuminate\Database\Eloquent\Model
     {
         protected $table = 'jackpots_stat';
         protected $fillable = [
-            'user_id', 
-            'system', 
-            'jackpot_id', 
-            'type', 
+            'user_id',
+            'system',
+            'jackpot_id',
+            'type',
             'summ'
         ];
         public $timestamps = false;
@@ -18,7 +18,7 @@ namespace VanguardLTE
         }
         public function user()
         {
-            return $this->belongsTo('VanguardLTE\User');
+            return $this->belongsTo('Aireset\User');
         }
     }
 

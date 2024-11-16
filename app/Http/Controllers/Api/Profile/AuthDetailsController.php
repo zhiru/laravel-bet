@@ -1,21 +1,21 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api\Profile
+<?php
+namespace Aireset\Http\Controllers\Api\Profile
 {
-    class AuthDetailsController extends \VanguardLTE\Http\Controllers\Api\ApiController
+    class AuthDetailsController extends \Aireset\Http\Controllers\Api\ApiController
     {
         public function __construct()
         {
             $this->middleware('auth');
         }
-        public function update(\VanguardLTE\Http\Requests\User\UpdateProfileLoginDetailsRequest $request, \VanguardLTE\Repositories\User\UserRepository $users)
+        public function update(\Aireset\Http\Requests\User\UpdateProfileLoginDetailsRequest $request, \Aireset\Repositories\User\UserRepository $users)
         {
             $user = $request->user();
             $data = $request->only([
-                'username', 
+                'username',
                 'password'
             ]);
             $user = $users->update($user->id, $data);
-            return $this->respondWithItem($user, new \VanguardLTE\Transformers\UserTransformer());
+            return $this->respondWithItem($user, new \Aireset\Transformers\UserTransformer());
         }
     }
 

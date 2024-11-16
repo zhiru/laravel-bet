@@ -1,8 +1,8 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Web\Frontend
+<?php
+namespace Aireset\Http\Controllers\Web\Frontend
 {
     set_time_limit(0);
-    class TestController extends \VanguardLTE\Http\Controllers\Controller
+    class TestController extends \Aireset\Http\Controllers\Controller
     {
         public function index(\Illuminate\Http\Request $request)
         {
@@ -38,7 +38,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                 '107'	 => 'Squash',
                 '151'	 => 'E-sports',
             ];
-            
+
             $sport = $request->get('sport');
             $response = \Illuminate\Support\Facades\Http::get('http://api.b365api.com/v1/bet365/inplay_filter?sport_id='.$sport.'&token='.env('API_TOKEN'));
             $apiData = $response->json();
@@ -70,7 +70,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                                     $fulltimeResultFound = false;
                                 }
                             }
-    
+
                             // match_goals
                             // if($result['type'] == 'MG' && $result['ID'] == 421) {
                             //     $matchGoalsFound = true;
@@ -88,24 +88,24 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                     }
 
                     //store odds
-                    $rseultCount = \VanguardLTE\SoccerOdds::where('event_id', $row['id'])->count();
+                    $rseultCount = \Aireset\SoccerOdds::where('event_id', $row['id'])->count();
                     if($rseultCount == 0) {
-                        \VanguardLTE\SoccerOdds::create([
-                            'event_id'              => $row['id'], 
+                        \Aireset\SoccerOdds::create([
+                            'event_id'              => $row['id'],
                             'fulltime_result'       => json_encode($odds)
                         ]);
                     }else{
-                        \VanguardLTE\SoccerOdds::where('event_id', $row['id'])
+                        \Aireset\SoccerOdds::where('event_id', $row['id'])
                         ->update([
                             'fulltime_result'       => json_encode($odds)
                         ]);
                     }
 
                     //store event in DB
-                    $count = \VanguardLTE\MatchEvent::where('event_id', $row['id'])->count();
+                    $count = \Aireset\MatchEvent::where('event_id', $row['id'])->count();
                     if($count == 0) {
-                        \VanguardLTE\MatchEvent::create([
-                            'event_id'      => $row['id'], 
+                        \Aireset\MatchEvent::create([
+                            'event_id'      => $row['id'],
                             'sport_id'      => $sport,
                             'sport_name'    => $sportArr[$sport],
                             'time'          => $row['time'],
@@ -118,7 +118,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                             'created_at'    => date('Y-m-d H:i:s'),
                         ]);
                     }else{
-                        \VanguardLTE\MatchEvent::where('event_id', $row['id'])
+                        \Aireset\MatchEvent::where('event_id', $row['id'])
                         ->update([
                             'sport_id'      => $sport,
                             'sport_name'    => $sportArr[$sport],
@@ -174,7 +174,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                                     $fulltimeResultFound = false;
                                 }
                             }
-    
+
                             // match_goals
                             // if($result['type'] == 'MG' && $result['ID'] == 421) {
                             //     $matchGoalsFound = true;
@@ -192,7 +192,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                     }
 
                     if($timeStatus != $event->time_status) {
-                        \VanguardLTE\MatchEvent::where('id', $event->id)
+                        \Aireset\MatchEvent::where('id', $event->id)
                         ->update([
                             'time_status'   => $timeStatus,
                             'updated_at'    => date('Y-m-d H:i:s')
@@ -200,7 +200,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend
                     }
 
                     //store odds
-                    \VanguardLTE\SoccerOdds::where('event_id', $event->id)
+                    \Aireset\SoccerOdds::where('event_id', $event->id)
                     ->update([
                         'fulltime_result'   => json_encode($odds)
                     ]);

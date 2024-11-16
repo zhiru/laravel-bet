@@ -1,6 +1,6 @@
 <?php
 
-namespace VanguardLTE\Providers;
+namespace Aireset\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

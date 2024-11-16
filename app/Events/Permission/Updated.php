@@ -1,5 +1,5 @@
 <?php
 
-namespace VanguardLTE\Events\Permission;
+namespace Aireset\Events\Permission;
 
 class Updated extends PermissionEvent {}

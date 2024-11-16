@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Web\Frontend\Auth
+<?php
+namespace Aireset\Http\Controllers\Web\Frontend\Auth
 {
-    class PasswordController extends \VanguardLTE\Http\Controllers\Controller
+    class PasswordController extends \Aireset\Http\Controllers\Controller
     {
         public function __construct()
         {
@@ -10,10 +10,10 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend\Auth
         public function getBasicTheme()
         {
             $frontend = 'Default';
-            if( \Auth::check() ) 
+            if( \Auth::check() )
             {
                 $shop = Shop::find(\Auth::user()->shop_id);
-                if( $shop ) 
+                if( $shop )
                 {
                     $frontend = $shop->frontend;
                 }
@@ -25,31 +25,31 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend\Auth
             $frontend = $this->getBasicTheme();
             return view('frontend.' . $frontend . '.auth.password.remind');
         }
-        public function sendPasswordReminder(\VanguardLTE\Http\Requests\Auth\PasswordRemindRequest $request, \VanguardLTE\Repositories\User\UserRepository $users)
+        public function sendPasswordReminder(\Aireset\Http\Requests\Auth\PasswordRemindRequest $request, \Aireset\Repositories\User\UserRepository $users)
         {
             $user = $users->findByEmail($request->email);
             $token = Password::getRepository()->create($user);
-            $user->notify(new \VanguardLTE\Notifications\ResetPassword($token));
-            event(new \VanguardLTE\Events\User\RequestedPasswordResetEmail($user));
+            $user->notify(new \Aireset\Notifications\ResetPassword($token));
+            event(new \Aireset\Events\User\RequestedPasswordResetEmail($user));
             return redirect()->to('password/remind')->with('success', trans('app.password_reset_email_sent'));
         }
         public function getReset($token = null)
         {
-            if( is_null($token) ) 
+            if( is_null($token) )
             {
                 throw new \Symfony\Component\HttpKernel\Exception\NotFoundHttpException();
             }
             $frontend = $this->getBasicTheme();
             return view('frontend.' . $frontend . '.auth.password.reset')->with('token', $token);
         }
-        public function postReset(\VanguardLTE\Http\Requests\Auth\PasswordResetRequest $request, \VanguardLTE\Repositories\User\UserRepository $users)
+        public function postReset(\Aireset\Http\Requests\Auth\PasswordResetRequest $request, \Aireset\Repositories\User\UserRepository $users)
         {
             $credentials = $request->only('email', 'password', 'password_confirmation', 'token');
             $response = Password::reset($credentials, function($user, $password)
             {
                 $this->resetPassword($user, $password);
             });
-            switch( $response ) 
+            switch( $response )
             {
                 case Password::PASSWORD_RESET:
                     $user = $users->findByEmail($request->email);
@@ -63,7 +63,7 @@ namespace VanguardLTE\Http\Controllers\Web\Frontend\Auth
         {
             $user->password = $password;
             $user->save();
-            event(new \VanguardLTE\Events\User\ResetedPasswordViaEmail($user));
+            event(new \Aireset\Events\User\ResetedPasswordViaEmail($user));
         }
     }
 

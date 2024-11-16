@@ -1,9 +1,9 @@
 <?php
 
-namespace VanguardLTE\Transformers;
+namespace Aireset\Transformers;
 
 use League\Fractal\TransformerAbstract;
-use VanguardLTE\Category;
+use Aireset\Category;
 
 class CategoryTransformer extends TransformerAbstract
 {

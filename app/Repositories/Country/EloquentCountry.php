@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Repositories\Country;
+namespace Aireset\Repositories\Country;
 
-use VanguardLTE\Country;
+use Aireset\Country;
 
 class EloquentCountry implements CountryRepository
 {

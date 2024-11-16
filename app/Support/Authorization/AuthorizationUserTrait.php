@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Support\Authorization;
+namespace Aireset\Support\Authorization;
 
-use VanguardLTE\Role;
+use Aireset\Role;
 
 trait AuthorizationUserTrait
 {

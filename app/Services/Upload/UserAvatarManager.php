@@ -1,9 +1,9 @@
 <?php
 
-namespace VanguardLTE\Services\Upload;
+namespace Aireset\Services\Upload;
 
 use Illuminate\Http\UploadedFile;
-use VanguardLTE\User;
+use Aireset\User;
 use Illuminate\Filesystem\Filesystem;
 use Intervention\Image\ImageManager;
 use Symfony\Component\HttpFoundation\File\File;

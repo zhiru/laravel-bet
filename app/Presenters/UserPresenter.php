@@ -1,8 +1,8 @@
 <?php
 
-namespace VanguardLTE\Presenters;
+namespace Aireset\Presenters;
 
-use VanguardLTE\Support\Enum\UserStatus;
+use Aireset\Support\Enum\UserStatus;
 use Illuminate\Support\Str;
 use Laracasts\Presenter\Presenter;
 

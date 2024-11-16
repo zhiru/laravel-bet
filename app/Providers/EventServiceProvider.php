@@ -1,20 +1,20 @@
 <?php
 
-namespace VanguardLTE\Providers;
+namespace Aireset\Providers;
 
-use VanguardLTE\Events\User\Banned;
-use VanguardLTE\Events\User\LoggedIn;
-use VanguardLTE\Events\User\Registered;
-use VanguardLTE\Listeners\Users\InvalidateSessionsAndTokens;
-use VanguardLTE\Listeners\Login\UpdateLastLoginTimestamp;
-use VanguardLTE\Listeners\Registration\SendConfirmationEmail;
-use VanguardLTE\Listeners\PermissionEventsSubscriber;
-use VanguardLTE\Listeners\RoleEventsSubscriber;
-use VanguardLTE\Listeners\UserEventsSubscriber;
-use VanguardLTE\Listeners\ShopEventsSubscriber;
-use VanguardLTE\Listeners\ReturnEventsSubscriber;
-use VanguardLTE\Listeners\JackpotEventsSubscriber;
-use VanguardLTE\Listeners\GameEventsSubscriber;
+use Aireset\Events\User\Banned;
+use Aireset\Events\User\LoggedIn;
+use Aireset\Events\User\Registered;
+use Aireset\Listeners\Users\InvalidateSessionsAndTokens;
+use Aireset\Listeners\Login\UpdateLastLoginTimestamp;
+use Aireset\Listeners\Registration\SendConfirmationEmail;
+use Aireset\Listeners\PermissionEventsSubscriber;
+use Aireset\Listeners\RoleEventsSubscriber;
+use Aireset\Listeners\UserEventsSubscriber;
+use Aireset\Listeners\ShopEventsSubscriber;
+use Aireset\Listeners\ReturnEventsSubscriber;
+use Aireset\Listeners\JackpotEventsSubscriber;
+use Aireset\Listeners\GameEventsSubscriber;
 
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 

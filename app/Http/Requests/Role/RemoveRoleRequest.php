@@ -1,7 +1,7 @@
-<?php 
-namespace VanguardLTE\Http\Requests\Role
+<?php
+namespace Aireset\Http\Requests\Role
 {
-    class RemoveRoleRequest extends \VanguardLTE\Http\Requests\Request
+    class RemoveRoleRequest extends \Aireset\Http\Requests\Request
     {
         public function authorize()
         {

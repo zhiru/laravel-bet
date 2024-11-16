@@ -1,13 +1,13 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Activity;
-use VanguardLTE\Events\Game\NewGame;
-use VanguardLTE\Events\Game\GameEdited;
-use VanguardLTE\Events\Game\DeleteGame;
-use VanguardLTE\Events\User\UserEventContract;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Activity;
+use Aireset\Events\Game\NewGame;
+use Aireset\Events\Game\GameEdited;
+use Aireset\Events\Game\DeleteGame;
+use Aireset\Events\User\UserEventContract;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class GameEventsSubscriber
 {
@@ -72,7 +72,7 @@ class GameEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\GameEventsSubscriber';
+        $class = 'Aireset\Listeners\GameEventsSubscriber';
 
         $events->listen(NewGame::class, "{$class}@onNewGame");
         $events->listen(GameEdited::class, "{$class}@onGameEdited");

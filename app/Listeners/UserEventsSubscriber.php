@@ -1,20 +1,20 @@
 <?php
 
-namespace VanguardLTE\Listeners;
+namespace Aireset\Listeners;
 
-use VanguardLTE\Activity;
-use VanguardLTE\Events\Settings\Updated as SettingsUpdated;
-use VanguardLTE\Events\User\Banned;
-use VanguardLTE\Events\User\ChangedAvatar;
-use VanguardLTE\Events\User\Created;
-use VanguardLTE\Events\User\Deleted;
-use VanguardLTE\Events\User\LoggedIn;
-use VanguardLTE\Events\User\LoggedOut;
-use VanguardLTE\Events\User\Registered;
-use VanguardLTE\Events\User\UpdatedByAdmin;
-use VanguardLTE\Events\User\UpdatedProfileDetails;
-use VanguardLTE\Events\User\UserEventContract;
-use VanguardLTE\Services\Logging\UserActivity\Logger;
+use Aireset\Activity;
+use Aireset\Events\Settings\Updated as SettingsUpdated;
+use Aireset\Events\User\Banned;
+use Aireset\Events\User\ChangedAvatar;
+use Aireset\Events\User\Created;
+use Aireset\Events\User\Deleted;
+use Aireset\Events\User\LoggedIn;
+use Aireset\Events\User\LoggedOut;
+use Aireset\Events\User\Registered;
+use Aireset\Events\User\UpdatedByAdmin;
+use Aireset\Events\User\UpdatedProfileDetails;
+use Aireset\Events\User\UserEventContract;
+use Aireset\Services\Logging\UserActivity\Logger;
 
 class UserEventsSubscriber
 {
@@ -107,7 +107,7 @@ class UserEventsSubscriber
      */
     public function subscribe($events)
     {
-        $class = 'VanguardLTE\Listeners\UserEventsSubscriber';
+        $class = 'Aireset\Listeners\UserEventsSubscriber';
 
         $events->listen(LoggedIn::class, "{$class}@onLogin");
         $events->listen(LoggedOut::class, "{$class}@onLogout");

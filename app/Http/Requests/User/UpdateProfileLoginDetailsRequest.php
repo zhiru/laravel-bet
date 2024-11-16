@@ -1,5 +1,5 @@
-<?php 
-namespace VanguardLTE\Http\Requests\User
+<?php
+namespace Aireset\Http\Requests\User
 {
     class UpdateProfileLoginDetailsRequest extends UpdateLoginDetailsRequest
     {

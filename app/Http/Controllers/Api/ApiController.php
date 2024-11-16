@@ -1,20 +1,20 @@
-<?php 
-namespace VanguardLTE\Http\Controllers\Api
+<?php
+namespace Aireset\Http\Controllers\Api
 {
-    abstract class ApiController extends \VanguardLTE\Http\Controllers\Controller
+    abstract class ApiController extends \Aireset\Http\Controllers\Controller
     {
         protected $statusCode = 200;
         protected $fractal = null;
         protected function fractal()
         {
-            if( $this->fractal ) 
+            if( $this->fractal )
             {
                 return $this->fractal;
             }
             $fractal = app('League\Fractal\Manager');
             $fractal->setRecursionLimit(2);
-            $fractal->setSerializer(new \VanguardLTE\Support\DataArraySerializer());
-            if( $includes = request('include') ) 
+            $fractal->setSerializer(new \Aireset\Support\DataArraySerializer());
+            if( $includes = request('include') )
             {
                 $fractal->parseIncludes($includes);
             }
@@ -31,7 +31,7 @@ namespace VanguardLTE\Http\Controllers\Api
         }
         protected function respondWithItem($item, $callback)
         {
-            if( $includes = $this->getValidIncludes($callback) ) 
+            if( $includes = $this->getValidIncludes($callback) )
             {
                 $item->load($includes);
             }
@@ -41,7 +41,7 @@ namespace VanguardLTE\Http\Controllers\Api
         }
         protected function respondWithCollection($collection, $callback)
         {
-            if( $includes = $this->getValidIncludes($callback) ) 
+            if( $includes = $this->getValidIncludes($callback) )
             {
                 $collection->load($includes);
             }
@@ -51,7 +51,7 @@ namespace VanguardLTE\Http\Controllers\Api
         }
         protected function respondWithPagination(\Illuminate\Contracts\Pagination\Paginator $paginator, $callback)
         {
-            if( $includes = $this->getValidIncludes($callback) ) 
+            if( $includes = $this->getValidIncludes($callback) )
             {
                 $paginator->load($includes);
             }
@@ -65,7 +65,7 @@ namespace VanguardLTE\Http\Controllers\Api
         private function getValidIncludes($callback)
         {
             $includes = $this->fractal()->getRequestedIncludes();
-            if( !$includes ) 
+            if( !$includes )
             {
                 return null;
             }
@@ -83,7 +83,7 @@ namespace VanguardLTE\Http\Controllers\Api
         }
         protected function respondWithError($message)
         {
-            if( $this->statusCode === 200 ) 
+            if( $this->statusCode === 200 )
             {
                 trigger_error('You better have a really good reason for erroring on a 200...', E_USER_WARNING);
             }
