@@ -1,14 +1,19 @@
-
-
-
-
 var fhc = require('./mod/FishHunter.js');
 
-var fs = require('fs');
-var serverConfig;
+const fs = require('fs');
+const path = require('path');
 
-serverConfig = JSON.parse(fs.readFileSync('../public/socket_config0.json', 'utf8'));
-	
+// Constroi o caminho absoluto para o arquivo de configuração
+const configPath = path.resolve(__dirname, '../public/socket_config0.json');
+
+let serverConfig;
+try {
+    serverConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    console.log("Configuração do servidor carregada com sucesso:", serverConfig);
+} catch (error) {
+    console.error("Erro ao carregar o arquivo de configuração:", error.message);
+}
+
 var templSpawnReq=null;
 
 
@@ -25,9 +30,9 @@ function DecimalToHex(d, padding) {
     return hex;
 }
 
-function HexToDecimal(hex){ 
+function HexToDecimal(hex){
 
-return parseInt(hex,16); 
+return parseInt(hex,16);
 
 }
 
@@ -88,7 +93,7 @@ function EncodeMessage(str) {
 
 
 if(serverConfig.ssl){
-	
+
 var privateKey = fs.readFileSync('ssl/goldsvet.com.key', 'utf8');
 var certificate = fs.readFileSync('ssl/goldsvet.com.crt', 'utf8');
 
@@ -115,31 +120,31 @@ var wss = new WebSocket.Server({port: serverConfig.port });
 
 //
 function ResponseHandler(msg){
-var cMsg='';	
+var cMsg='';
 var wf=msg.indexOf('{"');
 if(wf!==-1){
 cMsg = msg.substring(wf, msg.length);
-	
-}	
-var msgJson=JSON.parse(cMsg);	
+
+}
+var msgJson=JSON.parse(cMsg);
 return msgJson;
-	
+
 }
 
 
 
 function FormatAndSendMsg(ws,msgStr,msgId,messageView){
-	
-	
-var jsnMsg=ResponseHandler(msgStr); 
-	
-ws.sessionId=jsnMsg.sessionId;	
-ws.cookie=jsnMsg.cookie;	
-	
-var pAnswer='';	
-	
-/*---------------*/	
-	
+
+
+var jsnMsg=ResponseHandler(msgStr);
+
+ws.sessionId=jsnMsg.sessionId;
+ws.cookie=jsnMsg.cookie;
+
+var pAnswer='';
+
+/*---------------*/
+
 var request = require('request');
 var gameURL= serverConfig.prefix+serverConfig.host+'/game/FishHunterKA/server?&sessionId='+jsnMsg.sessionId;
 
@@ -149,8 +154,8 @@ var gameURL= serverConfig.prefix+serverConfig.host+'/game/FishHunterKA/server?&s
 
 var options = {
   method: 'post',
-  body: jsnMsg, 
-  json: true, 
+  body: jsnMsg,
+  json: true,
   rejectUnauthorized: false,
   requestCert: false,
   agent: false,
@@ -163,15 +168,15 @@ var options = {
 
 
 if(jsnMsg['action']=='fishHunter.areaHandler.onFire'){
-	
 
-pAnswer = ws.fhController.OnFire(jsnMsg);	
-if(ws.fhController.fhcBalance<ws.fhController.fhcBet ){	
-	
-return;	
 
-}	
-	
+pAnswer = ws.fhController.OnFire(jsnMsg);
+if(ws.fhController.fhcBalance<ws.fhController.fhcBet ){
+
+return;
+
+}
+
 
 
 
@@ -184,7 +189,7 @@ var pAnswerT=JSON.parse(pAnswer[ac]);
 
 var par0=pAnswerT['answerType'];
 var par1=pAnswer[ac];
-var response=EncodeMessage('......'+par0+par1);	
+var response=EncodeMessage('......'+par0+par1);
 var responseView = new Int8Array(response);
 var allDataMsg=('..'+par0+par1);
 var allDataMsgStr=DecimalToHex(allDataMsg.length, 4);
@@ -193,7 +198,7 @@ responseView[1]=0;
 responseView[2]=HexToDecimal(allDataMsgStr[0]+allDataMsgStr[1]);
 responseView[3]=HexToDecimal(allDataMsgStr[2]+allDataMsgStr[3]);
 responseView[4]=pAnswerT['responseView'][4];
-responseView[5]=pAnswerT['responseView'][5];	
+responseView[5]=pAnswerT['responseView'][5];
 
 
 ws.send(response);
@@ -205,7 +210,7 @@ ws.send(response);
 
 
 return;
-	
+
 }
 
 
@@ -216,7 +221,7 @@ return;
 request(options, function (err, res, body) {
   if (err) {
     console.log('Error :', err)
-   
+
   }
 
 //////////////////////////
@@ -228,7 +233,7 @@ request(options, function (err, res, body) {
 try{
 pAnswer=body.split(":::")[1].split("---");
 }catch(e){
-return;	
+return;
 }
 
 
@@ -237,24 +242,24 @@ for(var ac=0; ac<pAnswer.length; ac++){
 
 
 var pAnswerT=JSON.parse(pAnswer[ac]);
-/*-----------*/	
+/*-----------*/
 
 if(pAnswerT['answerType']=='game.colliderResult'){
 
 
 
-ws.fhController.fhcBalance=pAnswerT['Balance'];		
+ws.fhController.fhcBalance=pAnswerT['Balance'];
 
 
-	
-	
-}	
-	
+
+
+}
+
 
 if(jsnMsg['action']=='areaFishControl.fishHandler.fetchFishInfo'){
-	
 
-	
+
+
 var par0=pAnswerT['answerType'];
 var par1=pAnswer[ac];
 
@@ -263,10 +268,10 @@ var par1=pAnswer[ac];
 
 var adv_char='..';
  if(messageView[6]!=41){
-var response=EncodeMessage('.......'+par1);	
-var adv_char='...';	
+var response=EncodeMessage('.......'+par1);
+var adv_char='...';
 }else{
-var response=EncodeMessage('......'+par1);	
+var response=EncodeMessage('......'+par1);
 }
 var responseView = new Int8Array(response);
 var allDataMsg=(adv_char+par1);
@@ -276,19 +281,19 @@ responseView[1]=0;
 responseView[2]=HexToDecimal(allDataMsgStr[0]+allDataMsgStr[1]);
 responseView[3]=HexToDecimal(allDataMsgStr[2]+allDataMsgStr[3]);
 responseView[4]=4;
-responseView[5]=messageView[5];	
+responseView[5]=messageView[5];
 if(messageView[6]!=41){
-responseView[6]=messageView[6];	
+responseView[6]=messageView[6];
 }
 
 
-		
-	
+
+
 }else{
-	
+
 var par0=pAnswerT['answerType'];
 var par1=pAnswer[ac];
-var response=EncodeMessage('......'+par0+par1);	
+var response=EncodeMessage('......'+par0+par1);
 var responseView = new Int8Array(response);
 var allDataMsg=('..'+par0+par1);
 var allDataMsgStr=DecimalToHex(allDataMsg.length, 4);
@@ -297,19 +302,19 @@ responseView[1]=0;
 responseView[2]=HexToDecimal(allDataMsgStr[0]+allDataMsgStr[1]);
 responseView[3]=HexToDecimal(allDataMsgStr[2]+allDataMsgStr[3]);
 responseView[4]=pAnswerT['responseView'][4];
-responseView[5]=pAnswerT['responseView'][5];	
+responseView[5]=pAnswerT['responseView'][5];
 
 
 if(pAnswerT['answerType']=='game.start'  || pAnswerT['answerType']=='game.updateCannon'  ){
-	
-ws.fhController.fhcBalance=pAnswerT['Balance'];	
-ws.fhController.fhcBet=pAnswerT['curBet'];	
-	
+
+ws.fhController.fhcBalance=pAnswerT['Balance'];
+ws.fhController.fhcBet=pAnswerT['curBet'];
+
 }
 
 
 
-	
+
 }
 
 
@@ -320,16 +325,16 @@ ws.send(response);
 
 
 if(jsnMsg['action']=='playerControl.tableHandler.leaveTable'){
-	
 
-var response=EncodeMessage('......{"code":200}');	
+
+var response=EncodeMessage('......{"code":200}');
 var responseView = new Int8Array(response);
 responseView[0]=4;
 responseView[1]=0;
 responseView[2]=0;
 responseView[3]=14;
 responseView[4]=4;
-responseView[5]=messageView[5];	
+responseView[5]=messageView[5];
 
 
 
@@ -343,10 +348,10 @@ ws.send(response);
 //////////////////////////
 
 
-});	
-	
-	
-	
+});
+
+
+
 }
 
 
@@ -357,48 +362,48 @@ var  wsClientsId=0;
 
 wss.binaryType='arraybuffer';
 wss.on('connection', function connection(ws) {
-	
+
 ws.id=wsClientsId;
 ws.fhController= new fhc.FishHunterController();
 wsClients[wsClientsId]={ ws_:ws, msgId:0,state:'idle'};
-	
-wsClientsId++;	
+
+wsClientsId++;
 
 
 
-	
+
   ws.on('close', function () {
 	console.log('close');
 clearInterval(ws.fishSpawnInterval);
-	
+
   });
-  
+
   ws.on('message', function incoming(message) {
 
 var msgStr=DecodeMessage(message);
-var messageView = new Int8Array(message);	
+var messageView = new Int8Array(message);
 
 if(msgStr.length==4 &&  messageView[1]==0 && messageView[2]==0 && messageView[3]==0){
-	
+
   var response = new ArrayBuffer(4);
-  var bufView = new Int8Array(response);	
-  
-  
+  var bufView = new Int8Array(response);
+
+
 	bufView[0]=3;
 	bufView[1]=0;
 	bufView[2]=0;
 	bufView[3]=0;
 	ws.send(response);
 }else{
-	
 
-    
+
+
 /////////////	init0
 if(wsClients[ws.id].msgId==0){
-	
-var jsnMsg=ResponseHandler(msgStr); 
-	
-var response=EncodeMessage('...#{"code":200,"sys":{"heartbeat":30}}');	
+
+var jsnMsg=ResponseHandler(msgStr);
+
+var response=EncodeMessage('...#{"code":200,"sys":{"heartbeat":30}}');
 var responseView = new Int8Array(response);
 responseView[0]=1;
 responseView[1]=0;
@@ -415,52 +420,52 @@ FormatAndSendMsg(ws,msgStr,wsClients[ws.id].msgId,messageView);
 }else if(wsClients[ws.id].msgId==2){
 
 /////////////	init1
-	
+
 FormatAndSendMsg(ws,msgStr,wsClients[ws.id].msgId,messageView);
 
 }else{
-	
+
 if(msgStr.indexOf("onPingBalance")!==-1 && templSpawnReq==null){
 
 msgStr=msgStr.replace('"action":"connector.accountHandler.onPingBalance"', '"action":"connector.accountHandler.onPingBalance_2"');
 
-templSpawnReq={msgStr:msgStr,messageView:messageView};	
+templSpawnReq={msgStr:msgStr,messageView:messageView};
 
 ws.fishSpawnInterval=setInterval(function(){
-	
 
-FormatAndSendMsg(ws,templSpawnReq.msgStr,wsClients[ws.id].msgId,templSpawnReq.messageView);		
 
-	
+FormatAndSendMsg(ws,templSpawnReq.msgStr,wsClients[ws.id].msgId,templSpawnReq.messageView);
+
+
 },10000);
 
-	
+
 }else if(ws.fishSpawnInterval== undefined){
-	
-	
+
+
 ws.fishSpawnInterval=setInterval(function(){
-	
-
-FormatAndSendMsg(ws,templSpawnReq.msgStr,wsClients[ws.id].msgId,templSpawnReq.messageView);		
-
-	
-},10000);	
-	
-}	
-	
-	
-FormatAndSendMsg(ws,msgStr,wsClients[ws.id].msgId,messageView);	
-	
-}		
 
 
-wsClients[ws.id].msgId++;	
+FormatAndSendMsg(ws,templSpawnReq.msgStr,wsClients[ws.id].msgId,templSpawnReq.messageView);
+
+
+},10000);
+
+}
+
+
+FormatAndSendMsg(ws,msgStr,wsClients[ws.id].msgId,messageView);
+
+}
+
+
+wsClients[ws.id].msgId++;
 
 
 }
-	
 
-	
+
+
   });
 
 

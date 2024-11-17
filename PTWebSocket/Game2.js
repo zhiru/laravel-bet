@@ -1,17 +1,19 @@
+const fs = require('fs');
+const path = require('path');
 
+// Constroi o caminho absoluto para o arquivo de configuração
+const configPath = path.resolve(__dirname, '../public/socket_config.json');
 
-
-
-var fs = require('fs');
-var serverConfig;
-
-serverConfig = JSON.parse(fs.readFileSync('../public/socket_config.json', 'utf8'));
-	
-
-
+let serverConfig;
+try {
+    serverConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    console.log("Configuração do servidor carregada com sucesso:", serverConfig);
+} catch (error) {
+    console.error("Erro ao carregar o arquivo de configuração:", error.message);
+}
 
 if(serverConfig.ssl){
-	
+
 var privateKey = fs.readFileSync('ssl/goldsvet.com.key', 'utf8');
 var certificate = fs.readFileSync('ssl/goldsvet.com.crt', 'utf8');
 
@@ -36,23 +38,23 @@ var wss = new WebSocket.Server({port: serverConfig.port });
 
 }
 
- 
+
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
-	  
 
-    
- 
-    
-  
-    
-  
+
+
+
+
+
+
+
 
 
 var gameName='';
 
 if(message.split(":::")[1]!=undefined){
-try{	
+try{
 var param=JSON.parse(message.split(":::")[1]);
 }catch(e){
 return;
@@ -66,8 +68,8 @@ param.cookie='';
 
 gameName=param.gameName;
 }else{
-var param={};	
-var ck='';	
+var param={};
+var ck='';
 }
 
 var gameURL= serverConfig.prefix+serverConfig.host+'/game/'+gameName+'/server?&sessionId='+sessionId;
@@ -83,7 +85,7 @@ if(gameName==undefined){
 
    /*------------------------*/
     /*------------------------*/
-	
+
 	var postData = JSON.stringify(param);
 
 var options = {
@@ -110,23 +112,23 @@ console.log(res);
   res.on('end', () => {
 
  if(rslt!=''){
-	  
-	try{  
-	  
+
+	try{
+
   var allReq=rslt.split("------");
-  
+
 }catch(e){
-	
+
    console.log('Error :', e)
-return;	
+return;
 }
 
   for(var i=0;i<allReq.length;i++){
-	  
-	 console.log(allReq[i]); 
-	  
-	ws.send(allReq[i]);  
-	  
+
+	 console.log(allReq[i]);
+
+	ws.send(allReq[i]);
+
   }
 
  }
@@ -142,10 +144,10 @@ req.on('error', (e) => {
 
 req.write(postData);
 req.end();
-	
 
-   
-    
+
+
+
   });
 
   ws.send('1::');

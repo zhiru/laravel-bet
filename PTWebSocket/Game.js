@@ -1,17 +1,19 @@
+const fs = require('fs');
+const path = require('path');
 
+// Constroi o caminho absoluto para o arquivo de configuração
+const configPath = path.resolve(__dirname, '../public/socket_config.json');
 
-
-
-var fs = require('fs');
-var serverConfig;
-
-serverConfig = JSON.parse(fs.readFileSync('../public/socket_config.json', 'utf8'));
-	
-
-
+let serverConfig;
+try {
+    serverConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    console.log("Configuração do servidor carregada com sucesso:", serverConfig);
+} catch (error) {
+    console.error("Erro ao carregar o arquivo de configuração:", error.message);
+}
 
 if(serverConfig.ssl){
-	
+
 var privateKey = fs.readFileSync('ssl/goldsvet.com.key', 'utf8');
 var certificate = fs.readFileSync('ssl/goldsvet.com.crt', 'utf8');
 
@@ -29,29 +31,28 @@ var wss = new WebSocket({
 
 }else{
 
-var WebSocket = require('ws');
-var wss = new WebSocket.Server({port: serverConfig.port });
-
+    var WebSocket = require('ws');
+    var wss = new WebSocket.Server({port: serverConfig.port });
 
 }
 
- 
+
 wss.on('connection', function connection(ws) {
   ws.on('message', function incoming(message) {
-	  
 
-    
+
+
     /*------------------------*/
-    
-  
-    
-  
+
+
+
+
 var request = require('request');
 
 var gameName='';
 
 if(message.split(":::")[1]!=undefined){
-try{	
+try{
 var param=JSON.parse(message.split(":::")[1]);
 }catch(e){
 return;
@@ -65,8 +66,8 @@ param.cookie='';
 
 gameName=param.gameName;
 }else{
-var param={};	
-var ck='';	
+var param={};
+var ck='';
 }
 
 var gameURL= serverConfig.prefix+serverConfig.host+'/game/'+gameName+'/server?&sessionId='+sessionId;
@@ -82,8 +83,8 @@ var paramStr=JSON.stringify(param);
 
 var options = {
   method: 'post',
-  body: param, 
-  json: true, 
+  body: param,
+  json: true,
   rejectUnauthorized: false,
   requestCert: false,
   agent: false,
@@ -101,39 +102,39 @@ request(options, function (err, res, body) {
     console.log('Error :', err)
     return
   }
-  
+
   if(body!=undefined){
-	  
-	try{  
-	  
+
+	try{
+
   var allReq=body.split("------");
-  
+
 }catch(e){
-	
+
    console.log('Error :', e)
-return;	
+return;
 }
   console.log('-------  message  ----------');
-  
-  
+
+
   console.log(message);
-  
+
   console.log('-------  send  ----------');
   for(var i=0;i<allReq.length;i++){
-	  
-	 console.log(allReq[i]); 
-	  
-	ws.send(allReq[i]);  
-	  
+
+	 console.log(allReq[i]);
+
+	ws.send(allReq[i]);
+
   }
-  
+
 }
 
 });
-    
+
     /*-------------------------*/
-   
-    
+
+
   });
 
   ws.send('1::');

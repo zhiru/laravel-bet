@@ -1,7 +1,16 @@
-var fs = require('fs');
-var serverConfig;
+const fs = require('fs');
+const path = require('path');
 
-serverConfig = JSON.parse(fs.readFileSync('../public/socket_live_config.json', 'utf8'));
+// Constroi o caminho absoluto para o arquivo de configuração
+const configPath = path.resolve(__dirname, '../public/socket_live_config.json');
+
+let serverConfig;
+try {
+    serverConfig = JSON.parse(fs.readFileSync(configPath, 'utf8'));
+    console.log("Configuração do servidor carregada com sucesso:", serverConfig);
+} catch (error) {
+    console.error("Erro ao carregar o arquivo de configuração:", error.message);
+}
 
 var http = require('http').Server();
 var io = require('socket.io')(http);

@@ -1,15 +1,13 @@
 <?php // -*- c++ -*-
 
-/** 
+/**
  * ionCube Loader install Wizard
  *
- * ionCube is a registered trademark of ionCube Ltd. 
+ * ionCube is a registered trademark of ionCube Ltd.
  *
  * Copyright (c) ionCube Ltd. 2002-2018
  */
 
-
- 
 
 define ('ERROR_UNKNOWN_OS',1);
 define ('ERROR_UNSUPPORTED_OS',2);
@@ -51,9 +49,9 @@ define ('ERROR_LOADER_PHP_VERSION_UNKNOWN',390);
 
 define ('SERVER_UNKNOWN',0);
 define ('HAS_PHP_INI',1);
-define ('SERVER_SHARED',2); 
-define ('SERVER_VPS',5); 
-define ('SERVER_DEDICATED',7); 
+define ('SERVER_SHARED',2);
+define ('SERVER_VPS',5);
+define ('SERVER_DEDICATED',7);
 define ('SERVER_LOCAL',9);
 
 define ('IONCUBE_IP_ADDRESS',
@@ -61,37 +59,37 @@ define ('IONCUBE_IP_ADDRESS',
 define  ('IONCUBE_ACCESS_ADDRESS',
 			'lwaccess.ioncube.com');
 define ('LOADERS_PAGE',
-            'http://loaders.ioncube.com/'); 
+            'http://loaders.ioncube.com/');
 define ('SUPPORT_SITE',
-            'http://support.ioncube.com/');                                 
+            'http://support.ioncube.com/');
 define ('WIZARD_SUPPORT_TICKET_DEPARTMENT',
 			'3');
 define ('LOADER_FORUM_URL',
-            'http://forum.ioncube.com/viewforum.php?f=4');                  
+            'http://forum.ioncube.com/viewforum.php?f=4');
 define ('LOADERS_FAQ_URL',
-            'http://www.ioncube.com/faqs/loaders.php');                     
+            'http://www.ioncube.com/faqs/loaders.php');
 define ('UNIX_ERRORS_URL',
-            'http://www.ioncube.com/loaders/unix_startup_errors.php');      
+            'http://www.ioncube.com/loaders/unix_startup_errors.php');
 define ('LOADER_WIZARD_URL',
-            LOADERS_PAGE);                                                  
+            LOADERS_PAGE);
 define ('ENCODER_URL',
-            'http://www.ioncube.com/sa_encoder.php');                       
+            'http://www.ioncube.com/sa_encoder.php');
 define ('LOADER_VERSION_URL',
-            'http://www.ioncube.com/feeds/product_info/versions.php');    
+            'http://www.ioncube.com/feeds/product_info/versions.php');
 define ('WIZARD_LATEST_VERSION_URL',
-            LOADER_VERSION_URL . '?item=loader-wizard'); 
+            LOADER_VERSION_URL . '?item=loader-wizard');
 define ('PHP_COMPILERS_URL',
             LOADER_VERSION_URL . '?item=php-compilers');
 define ('LOADER_PLATFORM_URL',
-            LOADER_VERSION_URL . '?item=loader-platforms-all');   
+            LOADER_VERSION_URL . '?item=loader-platforms-all');
 define ('LOADER_LATEST_VERSIONS_URL',
-            LOADER_VERSION_URL . '?item=loader-versions'); 
+            LOADER_VERSION_URL . '?item=loader-versions');
 define ('LOADER_PHP_VERSION_URL',
-            LOADER_VERSION_URL . '?item=loader-php-support'); 
+            LOADER_VERSION_URL . '?item=loader-php-support');
 define ('WIZARD_STATS_URL',
-            'http://www.ioncube.com/feeds/stats/wizard.php');    
+            'http://www.ioncube.com/feeds/stats/wizard.php');
 define ('IONCUBE_DOWNLOADS_SERVER',
-            'http://downloads3.ioncube.com/loader_downloads');          
+            'http://downloads3.ioncube.com/loader_downloads');
 define ('IONCUBE24_URL',
 			'https://ioncube24.com');
 define ('IONCUBE_CONNECT_TIMEOUT',4);
@@ -152,7 +150,7 @@ function latest_wizard_version()
 {
     if (!isset($_SESSION['latest_wizard_version'])) {
         $_SESSION['latest_wizard_version'] = retrieve_latest_wizard_version();
-    } 
+    }
     return $_SESSION['latest_wizard_version'];
 }
 
@@ -255,7 +253,7 @@ function php_version_maj_min()
 
 function is_supported_php_version()
 {
-    $v = php_version(); 
+    $v = php_version();
 
     return ((($v['major'] == 4) && ($v['minor'] >= 1)) ||
       (($v['major'] == 5) && (($v['minor'] >= 1) || ($v['release'] >= 3))) ||
@@ -265,7 +263,7 @@ function is_supported_php_version()
 function is_php_version_or_greater($major,$minor,$release = 0)
 {
     $version = php_version();
-    return ($version['major'] > $major || 
+    return ($version['major'] > $major ||
             ($version['major'] == $major && $version['minor'] > $minor) ||
             ($version['major'] == $major && $version['minor'] == $minor && $version['release'] >= $release));
 }
@@ -315,22 +313,22 @@ function default_platform_list()
 
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC9',        'os_mod' => '_vc9',     'arch'=>'x86',  'dirname'=>'win32_vc9', 'us1-dir'=>'windows_vc9/x86' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC9 (Non-TS)',   'os_mod' => '_nonts_vc9',   'arch'=>'x86',  'dirname'=>'win32-nonts_vc9', 'us1-dir'=>'windows_vc9/x86-nonts' );
-	
+
 	 $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC11',        'os_mod' => '_vc11',     'arch'=>'x86',  'dirname'=>'win32_vc11', 'us1-dir'=>'windows_vc11/x86' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC11 (Non-TS)',   'os_mod' => '_nonts_vc11',   'arch'=>'x86',  'dirname'=>'win32-nonts_vc11', 'us1-dir'=>'windows_vc11/x86-nonts' );
-	
+
 	$platforms[] = array('os'=>'win', 'os_human'=>'Windows VC11',        'os_mod' => '_vc11',     'arch'=>'x86-64',  'dirname'=>'win64_vc11', 'us1-dir'=>'windows_vc11/amd64' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC11 (Non-TS)',   'os_mod' => '_nonts_vc11',   'arch'=>'x86-64',  'dirname'=>'win64-nonts_vc11', 'us1-dir'=>'windows_vc11/amd64-nonts' );
-	
+
 	 $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC14',        'os_mod' => '_vc14',     'arch'=>'x86',  'dirname'=>'win32_vc14', 'us1-dir'=>'windows_vc14/x86' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC14 (Non-TS)',   'os_mod' => '_nonts_vc14',   'arch'=>'x86',  'dirname'=>'win32-nonts_vc14', 'us1-dir'=>'windows_vc14/x86-nonts' );
-	
+
 		$platforms[] = array('os'=>'win', 'os_human'=>'Windows VC14',        'os_mod' => '_vc14',     'arch'=>'x86-64',  'dirname'=>'win64_vc14', 'us1-dir'=>'windows_vc14/amd64' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC14 (Non-TS)',   'os_mod' => '_nonts_vc14',   'arch'=>'x86-64',  'dirname'=>'win64-nonts_vc14', 'us1-dir'=>'windows_vc14/amd64-nonts' );
-	
+
 		 $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC15',        'os_mod' => '_vc15',     'arch'=>'x86',  'dirname'=>'win32_vc15', 'us1-dir'=>'windows_vc15/x86' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC15 (Non-TS)',   'os_mod' => '_nonts_vc15',   'arch'=>'x86',  'dirname'=>'win32-nonts_vc15', 'us1-dir'=>'windows_vc15/x86-nonts' );
-	
+
 		$platforms[] = array('os'=>'win', 'os_human'=>'Windows VC15',        'os_mod' => '_vc15',     'arch'=>'x86-64',  'dirname'=>'win64_vc15', 'us1-dir'=>'windows_vc15/amd64' );
     $platforms[] = array('os'=>'win', 'os_human'=>'Windows VC15 (Non-TS)',   'os_mod' => '_nonts_vc15',   'arch'=>'x86-64',  'dirname'=>'win64-nonts_vc15', 'us1-dir'=>'windows_vc15/amd64-nonts' );
 
@@ -338,7 +336,7 @@ function default_platform_list()
     $platforms[] = array('os'=>'lin', 'os_human'=>'Linux',              'arch'=>'x86-64',   'dirname'=>'linux_x86_64-glibc2.3.4', 'us1-dir'=>'linux/x86_64');
 $platforms[] = array('os'=>'lin','os_human'=>'Linux',               'arch'=>'ppc',      'dirname'=>'linux_ppc-glibc2.3.4','us1-dir'=>'linux/ppc');
             $platforms[] = array('os'=>'lin','os_human'=>'Linux',               'arch'=>'ppc64',    'dirname'=>'linux_ppc64-glibc2.5','us1-dir'=>'linux/ppc64');
-    
+
 
 $platforms[] = array('os'=>'dra', 'os_human'=>'DragonFly', 'arch'=>'x86',      'dirname'=>'dragonfly_i386-1.7', 'us1-dir'=>'Dragonfly/x86');
 
@@ -355,7 +353,7 @@ $platforms[] = array('os'=>'fre', 'os_human'=>'FreeBSD 4', 'os_mod'=>'_4',  'arc
 
     $platforms[] = array('os'=>'fre', 'os_human'=>'FreeBSD 8', 'os_mod'=>'_8',  'arch'=>'x86',      'dirname'=>'freebsd_i386-8.0', 'us1-dir'=>'FreeBSD/v8/x86');
     $platforms[] = array('os'=>'fre', 'os_human'=>'FreeBSD 8', 'os_mod'=>'_8',  'arch'=>'x86-64',   'dirname'=>'freebsd_amd64-8.0', 'us1-dir'=>'FreeBSD/v8/AMD64');
-    
+
     $platforms[] = array('os'=>'bsd', 'os_human'=>'BSDi',     'is_legacy' => 1,           'arch'=>'x86',      'dirname'=>'bsdi_i386-4.3.1');
     $platforms[] = array('os'=>'net', 'os_human'=>'NetBSD',             'arch'=>'x86',      'dirname'=>'netbsd_i386-2.1','us1-dir'=>'NetBSD/x86');
     $platforms[] = array('os'=>'net', 'os_human'=>'NetBSD',             'arch'=>'x86-64',   'dirname'=>'netbsd_amd64-2.0','us1-dir'=>'NetBSD/x86_64');
@@ -408,35 +406,35 @@ function get_php_versions()
 function get_max_php_version_supported()
 {
 	static $max_php_version;
-	
+
 	if (empty($max_php_version)) {
 		$php_versions = get_php_versions();
-		
+
 		$dirname = calc_dirname();
-		
+
 		if (array_key_exists($dirname,$php_versions)) {
 			$max_php_version = $php_versions[$dirname];
 		} else {
 			$max_php_version = NULL;
 		}
 	}
-	
+
 	return $max_php_version;
 }
 
 function is_after_max_php_version_supported()
 {
 	$is_too_recent_php = false;
-	
+
 	$supported_php_version = get_max_php_version_supported();
-	
+
 	if (!is_null($supported_php_version)) {
 		$pversion = php_version();
-		
+
 		$supported_parts = explode('.',$supported_php_version);
 		$is_too_recent_php = ($supported_parts[0] < $pversion['major'] || ($supported_parts[0] == $pversion['major'] && $supported_parts[1] < $pversion['minor']));
 	}
-	
+
 	if ($is_too_recent_php) {
 		return $supported_php_version;
 	} else {
@@ -461,7 +459,7 @@ function supported_os_variants($os_code,$arch_code)
     foreach ($pinfo as $p) {
         if ($p['os'] == $os_code && $p['arch'] == $arch_code) {
             $os_arch_matches[$p['os_human']] = (isset($p['os_mod']))?(0 + (int) str_replace('_','',$p['os_mod'])):'';
-        } 
+        }
         if ($p['os'] == $os_code) {
             $os_found = true;
         } elseif ($p['arch'] == $arch_code) {
@@ -683,7 +681,7 @@ function required_loader($unamestr = '')
     } else {
         $os_names = array_keys($os_variants);
         if (count($os_variants) > 1) {
-            $parts = explode(" ",$os_names[0]); 
+            $parts = explode(" ",$os_names[0]);
             $os_name = $parts[0];
             $os_name_qual = $os_name . ' ' . $os_ver_parts[0] . '.' . $os_ver_parts[1];
         } else {
@@ -821,7 +819,7 @@ function is_local()
         $ip_address = strtolower($_SERVER["REMOTE_ADDR"]);
         if (strpos(':',$ip_address) === false) {
             $ip_parts = explode('.',$ip_address);
-            $ret = (($ip_parts[0] == 10) || 
+            $ret = (($ip_parts[0] == 10) ||
                     ($ip_parts[0] == 172 && $ip_parts[1] >= 16 &&  $ip_parts[1] <= 31) ||
                     ($ip_parts[0] == 192 && $ip_parts[1] == 168));
         } else {
@@ -851,7 +849,7 @@ function find_server_type($chosen_type = '',$type_must_be_chosen = false,$set_se
                 $server_type = SERVER_SHARED;
             } else {
                 $server_type = SERVER_UNKNOWN;
-            } 
+            }
         }
     } else {
         switch ($chosen_type)  {
@@ -999,7 +997,7 @@ function server_restriction_warnings()
         $warning_suffix = "This may affect the operation of this Loader Wizard.";
         if (ini_get('safe_mode')) {
             $warnings[] = "Safe mode is in effect on the server. " . $warning_suffix;
-        } 
+        }
         $disabled_functions = ini_get('disable_functions');
         if (!empty($disabled_functions)) {
             $warnings[] = "Some functions are disabled through disable_functions. " . $warning_suffix;
@@ -1037,7 +1035,7 @@ function possibly_selinux()
 function ini_same_dir_as_wizard()
 {
     $sys = get_sysinfo();
-    return dirname($sys['PHP_INI']) == dirname(__FILE__); 
+    return dirname($sys['PHP_INI']) == dirname(__FILE__);
 }
 
 function extension_dir_path()
@@ -1098,7 +1096,7 @@ function get_loader_location($loader_dir = '')
     if (empty($loader_dir)) {
         $loader_dir = get_default_loader_dir_webspace();
     }
-    $loader_name = get_loader_name(); 
+    $loader_name = get_loader_name();
     return ($loader_dir . DIRECTORY_SEPARATOR . $loader_name);
 }
 
@@ -1120,7 +1118,7 @@ function get_loader_location_from_ini($php_ini = '')
     }
     if (!empty($errors)) {
         return array('location' => '', 'errors' => $errors);
-    } 
+    }
     $lines = file($php_ini);
     $ext_start = zend_extension_line_start();
     $wrong_ext_start = ($ext_start == 'zend_extension')?'zend_extension_ts':'zend_extension';
@@ -1233,7 +1231,7 @@ function scan_inis_for_loader()
         $ldloc = get_loader_location_from_ini($f);
         if (array_key_exists(ERROR_INI_ZE_LINE_NOT_FOUND,$ldloc['errors'])) {
             unset($ldloc['errors'][ERROR_INI_ZE_LINE_NOT_FOUND]);
-        } 
+        }
         if ($shared_server && array_key_exists(ERROR_INI_NOT_FOUND,$ldloc['errors'])) {
             if (false == user_ini_space_path($f)) {
                 $ldloc['errors'][ERROR_INI_NOT_FOUND] = "A system ini file cannot be found or read by the Wizard - you cannot do anything about this on your shared server.";
@@ -1296,7 +1294,7 @@ function find_loader($search_directories_if_not_ini = false)
         $errors = $loader_ini['errors'];
     }
     if (empty($location) && (empty($errors) || $search_directories_if_not_ini)) {
-        $errors = array(); 
+        $errors = array();
         $location = find_loader_filesystem();
         if (empty($location)) {
             $errors[ERROR_LOADER_NOT_FOUND] = 'The loader file could not be found in standard locations.';
@@ -1331,7 +1329,7 @@ function ioncube_loader_version_information()
         $lat_parts = explode('.',$latest_version);
         $cur_parts = explode('.',$lv);
 
-        if (($cur_parts[0] > $lat_parts[0]) || 
+        if (($cur_parts[0] > $lat_parts[0]) ||
             ($cur_parts[0] == $lat_parts[0] && $cur_parts[1] > $lat_parts[1]) ||
              ($cur_parts[0] == $lat_parts[0] && $cur_parts[1] == $lat_parts[1] && $cur_parts[2] >= $lat_parts[2])) {
             $old_version = false;
@@ -1369,7 +1367,7 @@ function calc_platform()
         $osvar = null;
         if (is_ms_windows()) {
             $sys = get_sysinfo();
-            $phpc = (empty($sys['PHP_COMPILER']))?'vc6':strtolower($sys['PHP_COMPILER']); 
+            $phpc = (empty($sys['PHP_COMPILER']))?'vc6':strtolower($sys['PHP_COMPILER']);
             $osvar = ($sys['THREAD_SAFE']?'':'nonts_') . $phpc;
         }
     }
@@ -1415,7 +1413,7 @@ function calc_loader_latest_version()
     $latest_version = RECENT_LOADER_VERSION;
     if (!empty($lv_info)) {
         $dirname = calc_dirname();
-      
+
         if (!empty($dirname)) {
             $compiler_specific_version = false;
             if (is_ms_windows()) {
@@ -1432,7 +1430,7 @@ function calc_loader_latest_version()
             if (!$compiler_specific_version && array_key_exists($dirname,$lv_info)) {
                 $latest_version = $lv_info[$dirname];
             }
-        } 
+        }
     }
     return $latest_version;
 }
@@ -1554,7 +1552,7 @@ function runtime_loading_instructions()
         echo "Please note that on your system the Loader <em>must</em> be present in the same " . $dirphrase . " as the first encoded file accessed.";
     }
     echo '<ol>';
-    loader_download_instructions(); 
+    loader_download_instructions();
     $loader_dir = loader_install_instructions(SERVER_SHARED,dirname(__FILE__));
     shared_test_instructions();
     echo '</ol>';
@@ -1629,13 +1627,13 @@ function loader_download_instructions()
             echo '<li>Download a Windows Loaders archive from <a href="' . LOADERS_PAGE  . '" target=loaders>here</a>. If PHP is built with thread safety disabled, use the Windows non-TS Loaders.';
         }
     } else {
-        list($basename,$multiple_os_versions) = unix_package_name(); 
+        list($basename,$multiple_os_versions) = unix_package_name();
         if ($basename == "") {
             echo '<li>Download a ' . $loader['osname'] . ' ' . $loader['arch'] . ' Loaders archive from <a href="' . LOADERS_PAGE . '" target="loaders">here</a>.';
             echo "<br>Your system appears to be ${loader['osnamequal']} for ${loader['wordsize']} bit. If Loaders are not available for that exact release of ${loader['osname']}, Loaders built for an earlier release should work. Note that you may need to install back compatibility libraries for the operating system.";
             echo '<br>If you cannot find a suitable loader then please raise a ticket at <a href="'. SUPPORT_SITE . '">our support helpdesk</a>.';
         } else {
-            echo '<li>Download one of the following archives of Loaders for ' . $loader['osnamequal'] . ' ' . $loader['arch'] . ':'; 
+            echo '<li>Download one of the following archives of Loaders for ' . $loader['osnamequal'] . ' ' . $loader['arch'] . ':';
             if (SERVER_SHARED == find_server_type()) {
                 $archives = array('zip','tar.gz','tar.bz2');
             } else {
@@ -1877,7 +1875,7 @@ function zend_extension_instructions($server_type,$loader_dir)
                         }
                         fwrite($fh,$ini_strs);
                     }
-                    fclose($fh); 
+                    fclose($fh);
                     echo "<li>A <code>$php_ini_name</code> file has been created for you in <code>$ini_dir</code>.";
                 } else {
                     echo $download_ini_file;
@@ -1911,7 +1909,7 @@ function zend_extension_instructions($server_type,$loader_dir)
         }
         if (!empty($php_ini_path)) {
             if (zend_extension_line_missing($php_ini_path)) {
-                echo "<a>Alternatively, replace your current <code>$php_ini_path</code> file with <a href=\"$base&amp;page=phpconfig&amp;ininame=$php_ini_name&amp;stype=$server_type_code&amp;download=1&amp;prepend=1\">this new $php_ini_name file</a>."; 
+                echo "<a>Alternatively, replace your current <code>$php_ini_path</code> file with <a href=\"$base&amp;page=phpconfig&amp;ininame=$php_ini_name&amp;stype=$server_type_code&amp;download=1&amp;prepend=1\">this new $php_ini_name file</a>.";
             }
         }
     }
@@ -1954,14 +1952,14 @@ function php_ini_instruction_list($server_type)
     echo '<div class=panel>';
     echo '<ol>';
 
-    loader_download_instructions(); 
+    loader_download_instructions();
     $loader_dir = loader_install_instructions($server_type);
     zend_extension_instructions($server_type,$loader_dir);
     if ($server_type != SERVER_SHARED || !own_php_ini_possible()) {
         server_restart_instructions();
     } else {
         shared_test_instructions();
-    } 
+    }
     echo '</ol>';
     echo '</div>';
 }
@@ -2005,7 +2003,7 @@ function php_ini_install($server_type_desc = null, $server_type = SERVER_DEDICAT
         echo " (<a href=\"{$default}&amp;manual=1\">Please click here if you are <strong>not</strong> on a $server_type_desc server</a>.)";
     }
     echo '</p>';
-      
+
     php_ini_instruction_list($server_type);
 }
 
@@ -2023,7 +2021,7 @@ function help_resources($error_list = array())
             '<a target="_blank" href="' . LOADER_FORUM_URL . '">ionCube Loader Forum</a>'
         );
     if (SERVER_SHARED != $server_type || own_php_ini_possible(true)) {
-		$support_info = array ( 
+		$support_info = array (
 			'department' 		=> WIZARD_SUPPORT_TICKET_DEPARTMENT,
 			'subject' 			=> "ionCube Loader installation problem",
 			'message' 			=> support_ticket_information()
@@ -2037,9 +2035,9 @@ function help_resources($error_list = array())
 			$support_info['ini'] = base64_encode(file_get_contents($temp_files['ini']));
 			$support_info['phpinfo'] = base64_encode(file_get_contents($temp_files['phpinfo']));
 			$support_info['additional'] = base64_encode(file_get_contents($temp_files['additional']));
-			
+
 			$loader_path = find_loader(true);
-			if (is_string($loader_path)) {		
+			if (is_string($loader_path)) {
 				$support_info['loader'] = base64_encode(file_get_contents($loader_path));
 				$support_info['loader_name'] = basename($loader_path);
 			} else {
@@ -2053,7 +2051,7 @@ function help_resources($error_list = array())
 			$support_info['loader'] = '';
 			$support_info['loader_name'] = '';
 		}
-		 
+
         $resources[2] = '<form action="' . SUPPORT_SITE . 'lw_index.php' .'" method="POST" id="support-ticket"><a href="" onclick="document.getElementById(\'support-ticket\').submit(); return false;">Raise a support ticket through our helpdesk</a>';
 		$resources[2] .= '<input type="hidden" name="department" value="' . $support_info['department'] . '"/>';
 		$resources[2] .= '<input type="hidden" name="subject" value="' . $support_info['subject'] . '"/>';
@@ -2066,8 +2064,8 @@ function help_resources($error_list = array())
 			$resources[2] .= '<input type="hidden" name="loader_name" value="' . $support_info['loader_name'] . '"/>';
 		}
 		$resources[2] .= '</form>';
-    } 
-	
+    }
+
     if (SERVER_SHARED == $server_type && own_php_ini_possible(true) && !user_ini_space_path($sysinfo['PHP_INI'])) {
         $resources[3] = '<strong>Please check with your host that you can create php.ini files that will override the system one.</strong>';
     }
@@ -2192,8 +2190,8 @@ function system_info_archive_page()
         $base = get_base_address();
         $server_type_code = server_type_code();
         heading();
-        echo "<p>A downloadable archive of system information could not be created.<br> 
-            <strong>Please save each of the following and then attach those files to the support ticket:</strong></p>"; 
+        echo "<p>A downloadable archive of system information could not be created.<br>
+            <strong>Please save each of the following and then attach those files to the support ticket:</strong></p>";
         echo "<ul>";
         echo "<li><a href=\"$base&amp;page=phpinfo\" target=\"phpinfo\">phpinfo()</a></li>";
         echo "<li><a href=\"$base&amp;page=phpconfig\" target=\"phpconfig\">config</a></li>";
@@ -2234,7 +2232,7 @@ function support_ticket_information($error_list = array())
     } else {
         $info_lines["Security enhancements"] = "None";
     }
-    $info_lines["PHP version"] = PHP_VERSION; 
+    $info_lines["PHP version"] = PHP_VERSION;
     if ($sys['DEBUG_BUILD']) {
         $info_lines["DEBUG BUILD"] = "DEBUG BUILD OF PHP";
     }
@@ -2400,11 +2398,11 @@ function loader_system($loader_location)
             $loader_system['php_version_major'] = $version_matches[1];
             $loader_system['php_version_minor'] = $version_matches[2];
 			if ($loader_system['php_version_major'] == 7 && $loader_system['php_version_minor'] >= 2) {
-				$loader_system['compiler'] = 'VC15'; 
+				$loader_system['compiler'] = 'VC15';
 			} elseif ($loader_system['php_version_major'] == 7 && $loader_system['php_version_minor'] < 2) {
-				$loader_system['compiler'] = 'VC14'; 
+				$loader_system['compiler'] = 'VC14';
 			} elseif ($loader_system['php_version_major'] == 5 && $loader_system['php_version_minor'] >= 5) {
-				$loader_system['compiler'] = 'VC11'; 
+				$loader_system['compiler'] = 'VC11';
 			} elseif (preg_match("/assemblyIdentity.*version=\"([^.]+)\./",$loader_strs,$compiler_matches)) {
                 $loader_system['compiler'] = "VC" . strtoupper($compiler_matches[1]);
             } else {
@@ -2459,7 +2457,7 @@ function loader_compatibility_test($loader_location)
         $errors[ERROR_LOADER_NOT_READABLE] = $execute_error;
     }
     $loader_strs = get_loader_strings($loader_location);
-    $phpv = php_version(); 
+    $phpv = php_version();
     if (preg_match("/php version:\s*(.)\.(.)\.(..?)(-ts)?/i",$loader_strs,$version_matches)) {
         if ($version_matches[1] != $phpv['major'] || $version_matches[2]  != $phpv['minor']) {
             $loader_php = $version_matches[1] . "." . $version_matches[2];
@@ -2478,20 +2476,20 @@ function loader_compatibility_test($loader_location)
             if (isset($version_matches[4]) && $version_matches[4] == '_nonts' && is_bool($sysinfo['THREAD_SAFE']) &&  $sysinfo['THREAD_SAFE']) {
                 $errors[ERROR_LOADER_WIN_NONTS_PHP_TS] = "You have the non-thread-safe version of the Windows loader but you need the thread-safe one.";
             } elseif (!(is_bool($sysinfo['THREAD_SAFE']) &&  $sysinfo['THREAD_SAFE']) && !(isset($version_matches[4]) && $version_matches[4] == '_nonts')) {
-                $errors[ERROR_LOADER_WIN_TS_PHP_NONTS] = "You have the thread-safe version of the Windows loader but you need the non-thread-safe one."; 
+                $errors[ERROR_LOADER_WIN_TS_PHP_NONTS] = "You have the thread-safe version of the Windows loader but you need the non-thread-safe one.";
             }
             if ($version_matches[1] != $phpv['major'] || $version_matches[2]  != $phpv['minor']) {
                 $loader_php = $version_matches[1] . "." . $version_matches[2];
                 $server_php =  $phpv['major'] . "." .  $phpv['minor'];
                 $errors[ERROR_LOADER_WIN_PHP_MISMATCH] = "The installed loader is for PHP $loader_php but your server is running PHP $server_php.";
             }
-			
+
 			if ($version_matches[1]== 7 && $version_matches[2] >= 2) {
-				$loader_compiler = 'VC15'; 
+				$loader_compiler = 'VC15';
 			} else if ($version_matches[1]== 7) {
-				$loader_compiler = 'VC14'; 
+				$loader_compiler = 'VC14';
 			} elseif ($version_matches[1]== 5 && $version_matches[2] >= 5) {
-				$loader_compiler = 'VC11'; 
+				$loader_compiler = 'VC11';
             } elseif (preg_match("/assemblyIdentity.*version=\"([^.]+)\./",$loader_strs,$compiler_matches)) {
                 $loader_compiler = "VC" . strtoupper($compiler_matches[1]);
             } else {
@@ -2503,7 +2501,7 @@ function loader_compatibility_test($loader_location)
         }
     } else {
             $errors[ERROR_LOADER_PHP_VERSION_UNKNOWN] = "The PHP version for the loader cannot be determined - please check that you have a valid ionCube Loader.";
-    } 
+    }
     $errors += os_arch_string_check($loader_strs);
 
     return $errors;
@@ -2597,7 +2595,7 @@ function can_reach_ioncube()
 function info_should_be_disabled($only_allow_ioncube = false)
 {
     $elapsed = time() - max(filemtime(__FILE__),filectime(__FILE__));
-	
+
 	if (is_ioncube()) {
 		$cutoff_time = IONCUBE_WIZARD_EXPIRY_MINUTES * 60;
 	} else {
@@ -2607,7 +2605,7 @@ function info_should_be_disabled($only_allow_ioncube = false)
 			return true;
 		}
 	}
-	
+
     return ($elapsed > $cutoff_time);
 }
 
@@ -2650,7 +2648,7 @@ function run()
     if (!isset($_SESSION['CREATED'])) {
         $_SESSION['CREATED'] = time();
     } elseif (time() - $_SESSION['CREATED'] > SESSION_LIFETIME_MINUTES * 60 ) {
-        clear_session(); 
+        clear_session();
     }
     if (!isset($_SERVER)) $_SERVER =& $HTTP_SERVER_VARS;
 
@@ -2706,7 +2704,7 @@ function run()
 
     if (empty($page) || !function_exists($page . "_page")) {
         $page = get_default_page();
-    } 
+    }
 
     $fn = "${page}_page";
     $fn();
@@ -2936,7 +2934,7 @@ function ioncube_24_is_available()
 {
 	$loaderinfo = get_loaderinfo();
 	$php_ver = php_version();
-   
+
 	return ($loaderinfo['oscode'] == 'lin' && (($php_ver['major'] == 5 && $php_ver['minor'] >= 3) || $php_ver['major'] > 5) );
 }
 
@@ -2968,23 +2966,23 @@ function cli_install_instructions()
 
 	if (is_php_version_or_greater(5,3)) {
 		$cli_loader_installed = shell_exec('php -r "echo extension_loaded(\"' . LOADER_EXTENSION_NAME . '\");"');
-		
+
 		if (!$cli_loader_installed) {
 			$cli_php_ini_output = shell_exec("php --ini");
-			
+
 			$ini_loader_loc = scan_inis_for_loader();
-		
+
 			if (!is_null($cli_php_ini_output)) {
 				echo '<div class="panel">';
 				echo '<h4>Loader Installation for Command-Line (CLI) PHP</h4>';
 				echo "<p>At present it does not look like the ionCube Loader is installed for command-line (CLI) PHP.</p>";
 				echo "<p>Please note that if you need to run the CLI PHP, such as for <strong>cron jobs</strong>, then please ensure the zend_extension line for the ionCube Loader is included in your CLI PHP configuration.</p>";
-				
+
 				if (!empty($ini_loader_loc['location'])) {
 					echo "<p>The zend_extension line that needs to be copied is:</p>";
 					echo "<p><kbd>zend_extension = " . $ini_loader_loc['location'] . "</kbd></p>";
 				}
-				
+
 				echo "<p>Your CLI PHP Configuration is:</p>";
 				echo '<div class="terminal">';
 				echo "<pre>";
@@ -3008,13 +3006,13 @@ function successful_install_end_instructions($rtl_path = null)
     if (is_legacy_platform()) {
         legacy_platform_instructions();
     }
-	
+
 	if (!is_ms_windows() && is_php_version_or_greater(5,3)) {
 		cli_install_instructions();
 	}
-	
+
     uninstall_wizard_instructions();
-	
+
 	ioncube_24_information();
 }
 
@@ -3042,7 +3040,7 @@ function loader_already_installed($rtl = null)
         echo '</div>';
         loader_upgrade_instructions($lv,$newer_version);
     } else {
-        echo '<p>The ionCube Loader version ' . $lv . $php_str . ' is already installed and encoded files should run without problems.</p>'; 
+        echo '<p>The ionCube Loader version ' . $lv . $php_str . ' is already installed and encoded files should run without problems.</p>';
         echo '</div>';
         $is_legacy_loader = loader_major_version_instructions($mv,true);
         if ($is_legacy_loader) {
@@ -3131,7 +3129,7 @@ function loader_not_installed()
                 $problem_str = "Please note that the following problem currently exists";
             }
             echo '<div class="alert">' .$problem_str . ' with the ionCube Loader installation:';
-            echo make_list($errors,"ul"); 
+            echo make_list($errors,"ul");
             echo '</div>';
         }
         if (!empty($warnings)) {
@@ -3139,7 +3137,7 @@ function loader_not_installed()
             $plural = (count($warnings)>1)?'s':'';
             echo '<div class="warning">';
             echo "Please note $addword the following issue$plural:";
-            echo make_list($warnings,"ul"); 
+            echo make_list($warnings,"ul");
             echo '</div>';
         }
     }
@@ -3149,13 +3147,13 @@ function loader_not_installed()
 
     if (!is_supported_php_version()) {
         echo '<p>Your server is running PHP version ' . PHP_VERSION . ' and is
-                unsupported by ionCube Loaders.  Recommended PHP 4 versions are PHP 4.2 or higher, 
+                unsupported by ionCube Loaders.  Recommended PHP 4 versions are PHP 4.2 or higher,
                 and PHP 5.1 or higher for PHP 5.</p>';
 	} elseif ($latest_supported_php_version = is_after_max_php_version_supported()) {
 		echo '<strong>Your server is running PHP version ' . PHP_VERSION . ' and is
                 currently unsupported by any ionCube Loaders. <br/>This may change in the future if a Loader is produced for your PHP platform.<br/>In the meantime please downgrade PHP to version ' . $latest_supported_php_version . '.</strong>';
     } elseif ($sysinfo['DEBUG_BUILD']) {
-         echo '<p>Your server is currently running a debug build of PHP. The Loader cannot be installed with a debug build of PHP. Please ensure that PHP is reconfigured with debug disabled. Note that debug builds of PHP cannot help in debugging PHP scripts.</p>'; 
+         echo '<p>Your server is currently running a debug build of PHP. The Loader cannot be installed with a debug build of PHP. Please ensure that PHP is reconfigured with debug disabled. Note that debug builds of PHP cannot help in debugging PHP scripts.</p>';
     } elseif (!is_array($loader)) {
         if ($loader == ERROR_WINDOWS_64_BIT) {
             echo '<p>Loaders for 64-bit PHP on Windows are not currently available. However, if you <b>install and run 32-bit PHP</b> the corresponding 32-bit loader for Windows should work.</p>';
@@ -3209,7 +3207,7 @@ function server_selection_form()
             var l = document.getElementById('local');
             if (l.checked) {
                 return true;
-            } 
+            }
 
             var s = document.getElementById('shared');
             var d = document.getElementById('dedi');
@@ -3276,7 +3274,7 @@ function loader_check_page($ext_name = LOADER_EXTENSION_NAME)
     heading();
 
     $rtl_path = try_runtime_loading_if_applicable();
-	
+
     if (extension_loaded($ext_name)) {
         list($lv,$mv,$newer_version) = ioncube_loader_version_information();
         $phpv = php_version_maj_min();
@@ -3302,21 +3300,21 @@ function loader_check_page($ext_name = LOADER_EXTENSION_NAME)
         echo '<div class="failure">';
         echo '<h4>Loader Not Installed</h4>';
         echo '<p>The ionCube Loader is <b>not</b> currently installed successfully.</p>';
-	
+
         if (!is_null($rtl_path)) {
             echo '<p>Runtime loading was attempted but has failed.</p>';
             echo '</div>';
             $rt_errors = runtime_loading_errors();
             if (!empty($rt_errors)) {
                 list_loader_errors($rt_errors);
-            } 
+            }
             link_to_php_ini_instructions();
         } else {
             echo '</div>';
             list_loader_errors();
         }
     }
-	
+
     send_stats('check');
     footer(true);
 }
@@ -3348,7 +3346,7 @@ function ini_loader_errors()
             }
             $errors = $errors + $fs_loader_errors;
         }
-    } 
+    }
     return $errors;
 }
 
@@ -3449,7 +3447,7 @@ function ini_loader_warnings()
                         if (!@file_exists($root_ini_file) && $rootpath != $shared_ini_loc && $full_ini_loc != $rootpath) {
                             $all_ini_locations_used = false;
                             $advice .= " Please try copying the <code>$full_ini_loc</code> file to <code>" . $rootpath . "</code>.";
-                        } 
+                        }
                         if (!empty($cgibin_ini_file) && !@file_exists($cgibin_ini_file) && $cgibinpath != $shared_ini_loc && $full_ini_loc != $cgibinpath && $cgibinpath != $rootpath) {
                             $all_ini_locations_used = false;
                             $advice .= "  Please try copying the <code>$full_ini_loc</code> file to <code>" . $cgibinpath . "</code>.";
@@ -3477,7 +3475,7 @@ function ini_loader_warnings()
     } else {
         $loader_dir_pair = correct_loader_wrong_location();
         if (!empty($loader_dir_pair)) {
-            $advice = "The correct loader for your system has been found at <code>${loader_dir_pair['loader']}</code>."; 
+            $advice = "The correct loader for your system has been found at <code>${loader_dir_pair['loader']}</code>.";
             if ($loader_dir_pair['loader'] != $loader_dir_pair['newloc']) {
                 $advice .= " You may wish to copy the loader from <code>${loader_dir_pair['loader']}</code> to <code>${loader_dir_pair['newloc']}</code>.";
             }
@@ -3492,17 +3490,17 @@ function list_loader_errors($errors = array(),$warnings = array(),$suggest_resta
     $default = get_default_address();
     $retry_message = '';
 
-    
+
     if (empty($errors)) {
         $errors = ini_loader_errors();
         if (empty($warnings)) {
             $warnings = ini_loader_warnings();
         }
     }
-	
+
     if (!empty($errors)) {
         $try_again = '<a href="#" onClick="window.location.href=window.location.href">try again</a>';
-	
+
         echo '<div class="alert">';
         if (count($errors) > 1) {
             echo 'The following problems have been found with the ionCube Loader installation:';
@@ -3540,7 +3538,7 @@ function list_loader_errors($errors = array(),$warnings = array(),$suggest_resta
                 $ss = $sysinfo['SS'];
                 if (!$sysinfo['CGI_CLI'] || is_ms_windows()) {
                     echo "<p>Please check that the $ss web server software has been restarted.</p>";
-                } 
+                }
             }
         }
     }
@@ -3591,7 +3589,7 @@ function phpconfig_page()
             @readfile($original_ini_file);
         } else {
             echo all_ini_contents();
-        } 
+        }
     }
 }
 
@@ -3692,7 +3690,7 @@ function GoDaddy_root($html_root = '')
         } else {
             $_SESSION['not_go_daddy'] = 1;
             $_SESSION['godaddy_root'] = '';
-        } 
+        }
     } elseif (!empty($_SESSION['not_go_daddy'])) {
         $_SESSION['godaddy_root'] = '';
     }
@@ -3793,7 +3791,7 @@ function make_list($list_items,$list_type='ol')
         $html .= "</$list_type>";
     }
     return $html;
-} 
+}
 
 function make_archive_list($basename,$archives_list = array(),$download_server = IONCUBE_DOWNLOADS_SERVER)
 {
@@ -3846,7 +3844,7 @@ function failsafe_get_self()
 }
 
 function get_self()
-{ 
+{
 	$page = '';
     if (empty($_SERVER['PHP_SELF'])) {
         if (empty($_SERVER['SCRIPT_NAME'])) {
@@ -3950,14 +3948,14 @@ function footer($update_info = null)
     "Loader Wizard version " . script_version() . " ";
 
     if ($update_info === true) {
-        $update_info = check_for_wizard_update(false);  
+        $update_info = check_for_wizard_update(false);
     }
     $loader_wizard_loc = LOADER_WIZARD_URL;
     $wizard_version_string =<<<EOT
     <script type="text/javascript">
     var xmlhttp;
     function version_check()
-    { 
+    {
         var body = document.getElementsByTagName('body')[0];
         var ldel = document.getElementById('loading');
         if (!ldel) {
@@ -3984,14 +3982,14 @@ function footer($update_info = null)
                 clearTimeout(xmlHttpTimeout);
                 buttons = '';
                 if (wizardversion == '1') {
-                    msg = 'You have the current version of the<br>ionCube Loader Wizard'; 
+                    msg = 'You have the current version of the<br>ionCube Loader Wizard';
                 } else if (wizardversion != '0') {
                     msg = 'A new version, ' + wizardversion + ', of the loader wizard is available';
-                    buttons = '<button onclick="document.getElementById(\'loading\').style.display=\'none\'; window.open(\'$loader_wizard_loc\'); return false">Get new version</button> &nbsp;'; 
+                    buttons = '<button onclick="document.getElementById(\'loading\').style.display=\'none\'; window.open(\'$loader_wizard_loc\'); return false">Get new version</button> &nbsp;';
                 } else {
                     msg = 'Wizard version information cannot be obtained from the<br>ionCube server';
                 }
-                buttons += '<button onclick="document.getElementById(\'loading\').style.display=\'none\'; return false">Close this box</button>'; 
+                buttons += '<button onclick="document.getElementById(\'loading\').style.display=\'none\'; return false">Close this box</button>';
                 ldel.innerHTML = '<p>' + msg +  '<br>' + buttons + '</p>';
             }
         }
@@ -4009,7 +4007,7 @@ function footer($update_info = null)
     </script>
 EOT;
 
-    $wizard_version_string .= '('; 
+    $wizard_version_string .= '(';
     if ($update_info === null) {
         $wizard_version_string .= '<a target="_blank" href="' . $loader_wizard_loc . '" onclick="version_check();return false;">check for new version</a>';
     } else if ($update_info !== false) {
@@ -4017,11 +4015,11 @@ EOT;
     } else {
         $wizard_version_string .=  "current";
     }
-    $wizard_version_string .= ')'; 
+    $wizard_version_string .= ')';
     echo $wizard_version_string;
 
     $server_type_code = server_type_code();
-	
+
 	if (!info_should_be_disabled(true)) {
 		echo " | <a href=\"$base&amp;page=phpinfo\" target=\"phpinfo\">phpinfo</a>";
 		echo " | <a href=\"$base&amp;page=phpconfig\" target=\"phpconfig\">config</a>";
@@ -4163,10 +4161,10 @@ function css_page()
     th {
         text-align: left;
     }
-	
+
 	#important {
 		margin-top: 12px;
-	} 
+	}
 	h3.important {
 		margin: 0;
 		border: 0;
@@ -4175,7 +4173,7 @@ function css_page()
         padding: 1ex 0 1ex 0;
         background-color: #CB2430;
 		text-align: center;
-        color: #ffffff; 
+        color: #ffffff;
         width: 100%;
 	}
 
@@ -4184,7 +4182,7 @@ function css_page()
         border: 1px solid #660000;
         padding: 1ex 1em;
         background-color: #ffeeee;
-        color: #660000; 
+        color: #660000;
         width: 75%;
     }
 
@@ -4193,7 +4191,7 @@ function css_page()
         border: 1px solid #FFBF00;
         padding: 1ex 1em;
         background-color: #FDF5E6;
-        color: #000000; 
+        color: #000000;
         width: 75%;
     }
 
@@ -4202,7 +4200,7 @@ function css_page()
         border: 1px solid #006600;
         padding: 1ex 1em;
         background-color: #EEFFEE;
-        color: #000000; 
+        color: #000000;
         width: 75%;
     }
 
@@ -4216,7 +4214,7 @@ function css_page()
         width: 75%;
         padding: 1ex 1em;
     }
-	
+
 	.terminal {
 		border: none;
 		background-color: #000000;
@@ -4241,15 +4239,15 @@ function css_page()
     #main {
         margin: 20px;
     }
-	
-	
+
+
 	#main .ic24 {
 		position: relative;
 		width: 75%;
 		height: auto;
 		border-width: 1px 1px 1px 1px;
 		border-style: solid;
-		border-color: #4B8DF8;   
+		border-color: #4B8DF8;
 		background-color: #EFEFFF;
 		padding: 12px;
 		padding-top: 16px;
@@ -4257,12 +4255,12 @@ function css_page()
 		margin-top: 20px;
 		overflow: hidden;
 	}
-	
+
 	#main .ic24 p {
 		width: 100%;
 	}
-	
-	
+
+
 	#main .ic24graphic {
 		position: relative;
 		width: auto;
@@ -4272,26 +4270,26 @@ function css_page()
 		padding-right: 16px;
 		margin: 0px;
 		float: left;
-		
+
 	}
-	
+
 	#main #ic24info {
 		position: relative;
 		width: auto;
 		height: auto;
 		float: left;
 	}
-	
+
 	#main #ic24info a {
 		color: #0B4DB8;
 		text-decoration: none;
 	}
-	
+
 	#main #ic24logo {
 		max-width: 132px;
 		max-height: 132px;
 	}
-	
+
 EOT;
 }
 
